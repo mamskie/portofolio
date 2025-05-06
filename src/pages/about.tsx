@@ -36,7 +36,7 @@ export default function About(): JSX.Element {
           {...setTransition({ delayIn: 0.2 })}
         >
           <p>
-            Hi, I'm M. Khotibul Umam, an Information Systems graduate from 
+            Hi, II&apos;mm M. Khotibul Umam, an Information Systems graduate from 
             UIN Sunan Ampel Surabaya with a strong interest in web development, 
             system governance, and internal audit. My journey in tech began by 
             developing web-based archive management systems using 
