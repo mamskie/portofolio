@@ -7,7 +7,6 @@ export const config = {
 
 export default function handler(req: NextRequest) {
   const { searchParams } = req.nextUrl;
-
   const title = searchParams.get('title') || 'Mamskie';
   const description = searchParams.get('description') || 'mamskie.me';
   const image = searchParams.get('image');
@@ -25,7 +24,6 @@ export default function handler(req: NextRequest) {
           height: '100%',
           width: '100%',
           fontSize: 48,
-          fontFamily: '"Inter", sans-serif',
           textAlign: 'center',
           padding: 64,
         }}
@@ -33,8 +31,10 @@ export default function handler(req: NextRequest) {
         <style
           dangerouslySetInnerHTML={{
             __html: `
-              @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
-              * { font-family: 'Inter', sans-serif; }
+              @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+              * {
+                font-family: 'Inter', sans-serif;
+              }
             `,
           }}
         />
@@ -45,7 +45,13 @@ export default function handler(req: NextRequest) {
         {image && (
           <img
             src={image}
-            style={{ width: 400, height: 240, objectFit: 'cover', marginTop: 32 }}
+            style={{
+              width: 400,
+              height: 240,
+              objectFit: 'cover',
+              marginTop: 32,
+              borderRadius: 12,
+            }}
             alt=""
           />
         )}
