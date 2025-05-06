@@ -1,0 +1,22 @@
+{
+  "name": "Mamskie | Information System",
+  "short_name": "M. Khotibul Umam",
+  "description": "An online portfolio and blog by M. Khotibul Umam. Showcasing my web development projects, system audit experience, and insights in tech, compliance, and risk management.",
+  "display": "standalone",
+  "start_url": "/",
+  "theme_color": "#fff",
+  "background_color": "#000000",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/logo192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/logo512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}

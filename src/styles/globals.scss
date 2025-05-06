@@ -1,0 +1,94 @@
+@use 'nprogress';
+@use 'table';
+@use 'mdx';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    // ! use important as a workaround for nextjs@13.1.0 bug that prevents smooth scroll
+    // * remove it when the bug is fixed
+    scroll-behavior: smooth !important;
+  }
+
+  body {
+    @apply bg-white font-inter transition-colors dark:bg-black;
+  }
+
+  main {
+    @apply layout md:pt-12;
+  }
+
+  ::selection {
+    @apply bg-accent-main text-white;
+  }
+}
+
+@layer components {
+  .layout {
+    @apply mx-auto w-11/12 max-w-6xl;
+  }
+
+  .card-layout {
+    @apply grid grid-cols-[repeat(auto-fill,minmax(320px,1fr))] gap-4;
+  }
+
+  .custom-button {
+    @apply px-4 py-2 font-bold;
+  }
+
+  .main-border {
+    @apply border border-gray-300 dark:border-gray-600;
+  }
+
+  .custom-input {
+    @apply main-border rounded-md bg-white px-3 py-2 outline-none transition focus:border-accent-main dark:bg-black;
+  }
+
+  .smooth-tab {
+    @apply rounded-md transition-shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-main;
+  }
+
+  .clickable {
+    @apply smooth-tab main-border rounded-md shadow-sm transition hover:scale-[1.03] hover:shadow-md active:scale-[0.97];
+
+    &:focus-visible {
+      @apply scale-[1.03] shadow-md;
+    }
+  }
+
+  .gradient-title {
+    @apply bg-gradient-to-r from-accent-start to-accent-end bg-clip-text text-transparent;
+  }
+
+  .custom-underline {
+    @apply underline decoration-transparent outline-none transition [text-decoration-thickness:1px] 
+           hover:decoration-inherit focus-visible:decoration-inherit;
+  }
+
+  .animated-underline {
+    background-size: 0 2px;
+    background-position: 0 100%;
+
+    @apply bg-gradient-to-r from-accent-start to-accent-end bg-no-repeat pb-0.5 no-underline 
+           outline-none transition-all duration-300;
+
+    &.with-dots {
+      @apply border-b border-dotted border-black dark:border-white;
+    }
+
+    &:hover,
+    &:focus-visible,
+    &:has(+ div:hover),
+    .project-card:hover &,
+    .project-card:focus-visible & {
+      background-size: 100% 2px;
+
+      &.with-dots {
+        @apply border-transparent;
+      }
+    }
+  }
+}
