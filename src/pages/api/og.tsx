@@ -110,7 +110,7 @@ export default async function handler(
 }
 
 export const config: PageConfig = {
-  runtime: 'edge'
+  runtime: 'nodejs'
 };
 
 const regularFont = fetch(
