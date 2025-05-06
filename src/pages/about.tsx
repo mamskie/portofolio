@@ -36,7 +36,7 @@ export default function About(): JSX.Element {
           {...setTransition({ delayIn: 0.2 })}
         >
           <p>
-            Hi, II&apos;mm M. Khotibul Umam, an Information Systems graduate from 
+            Hi, I&apos;m M. Khotibul Umam, an Information Systems graduate from 
             UIN Sunan Ampel Surabaya with a strong interest in web development, 
             system governance, and internal audit. My journey in tech began by 
             developing web-based archive management systems using 
@@ -57,9 +57,9 @@ export default function About(): JSX.Element {
             I enjoy working on data-driven projects, like when I created a dashboard 
             to visualize water quality changes in Banjarmasin using 
             <CustomLink href='https://powerbi.microsoft.com'> Power BI</CustomLink>. 
-            I’m always eager to learn, build, and collaborate—this site is where I 
-            showcase my work, share insights, and reflect on what I’ve learned. 
-            Feel free to reach out if you'd like to connect or collaborate!
+            I&apos;m always eager to learn, build, and collaborate—this site is where I 
+            showcase my work, share insights, and reflect on what I&apos;ve learned. 
+            Feel free to reach out if you&apos;d like to connect or collaborate!
           </p>
         </motion.article>
       </section>
