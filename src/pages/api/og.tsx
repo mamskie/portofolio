@@ -2,18 +2,14 @@
 
 import { ImageResponse } from '@vercel/og';
 import { PUBLIC_URL } from '@lib/env';
-import type { CSSProperties } from 'react';
-import type { PageConfig } from 'next';
 import type { NextRequest } from 'next/server';
 
 export default async function handler(req: NextRequest): Promise<ImageResponse> {
-  const [regularFontData, mediumFontData] = await Promise.all([regularFont, mediumFont]);
-
   const { searchParams } = req.nextUrl;
 
   const type = searchParams.get('type');
   const title = searchParams.get('title');
-  const image = searchParams.get('image') || `${PUBLIC_URL}/assets/placeholder.png`; // Gambar placeholder jika tidak ada
+  const image = searchParams.get('image') || `${PUBLIC_URL}/assets/placeholder.png`;
   const article = searchParams.get('article');
   const description = searchParams.get('description');
 
@@ -76,35 +72,17 @@ export default async function handler(req: NextRequest): Promise<ImageResponse> 
     {
       width: 1200,
       height: 600,
-      fonts: [
-        {
-          name: 'Inter',
-          data: regularFontData,
-          weight: 400
-        },
-        {
-          name: 'Inter',
-          data: mediumFontData,
-          weight: 500
-        }
-      ]
+      fonts: [] // Kosongkan fonts agar tidak melebihi batas ukuran
     }
   );
 }
 
-export const config: PageConfig = {
-  runtime: 'edge'
-};
+// Hapus konfigurasi runtime: 'edge'
+// export const config: PageConfig = {
+//   runtime: 'edge'
+// };
 
-const regularFont = fetch(
-  new URL('/public/assets/inter-regular.ttf', import.meta.url)
-).then((res) => res.arrayBuffer());
-
-const mediumFont = fetch(
-  new URL('/public/assets/inter-medium.ttf', import.meta.url)
-).then((res) => res.arrayBuffer());
-
-const gradientTitleStyles: GradientTitle = {
+const gradientTitleStyles = {
   color: 'transparent',
   backgroundClip: 'text',
   backgroundImage: 'linear-gradient(to right, #0011FFFF, #00FFFFFF)'
