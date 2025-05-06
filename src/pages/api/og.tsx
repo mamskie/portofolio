@@ -6,19 +6,14 @@ import type { CSSProperties } from 'react';
 import type { PageConfig } from 'next';
 import type { NextRequest } from 'next/server';
 
-export default async function handler(
-  req: NextRequest
-): Promise<ImageResponse> {
-  const [regularFontData, mediumFontData] = await Promise.all([
-    regularFont,
-    mediumFont
-  ]);
+export default async function handler(req: NextRequest): Promise<ImageResponse> {
+  const [regularFontData, mediumFontData] = await Promise.all([regularFont, mediumFont]);
 
   const { searchParams } = req.nextUrl;
 
   const type = searchParams.get('type');
   const title = searchParams.get('title');
-  const image = searchParams.get('image');
+  const image = searchParams.get('image') || `${PUBLIC_URL}/assets/placeholder.png`; // Gambar placeholder jika tidak ada
   const article = searchParams.get('article');
   const description = searchParams.get('description');
 
@@ -26,7 +21,7 @@ export default async function handler(
 
   return new ImageResponse(
     (
-      <div tw='flex h-full w-full bg-black p-8 text-white '>
+      <div tw='flex h-full w-full bg-black p-8 text-white'>
         {article ? (
           <div tw='flex w-full justify-between'>
             <div tw='flex flex-col justify-between'>
@@ -46,7 +41,6 @@ export default async function handler(
                   alt='Emilia'
                 />
                 <div tw='ml-4 flex flex-col'>
-                  {/* Originally semibold */}
                   <p tw='-mb-4 text-2xl font-medium'>M. Khotibul Umam</p>
                   <p tw='text-lg font-medium text-gray-400'>@mamskie</p>
                 </div>
@@ -69,7 +63,6 @@ export default async function handler(
             <h2 style={gradientTitleStyles} tw='pb-1 text-6xl'>
               {isHomepage ? 'Mamskie' : title}
             </h2>
-            {/* Originally semibold */}
             {!isHomepage && (
               <p tw='text-2xl font-medium text-gray-200'>mamskie.me</p>
             )}
@@ -94,16 +87,6 @@ export default async function handler(
           data: mediumFontData,
           weight: 500
         }
-        // {
-        //   name: 'Inter',
-        //   data: semiBoldFontData,
-        //   weight: 600
-        // },
-        // {
-        //   name: 'Inter',
-        //   data: boldFontData,
-        //   weight: 700
-        // }
       ]
     }
   );
@@ -120,19 +103,6 @@ const regularFont = fetch(
 const mediumFont = fetch(
   new URL('/public/assets/inter-medium.ttf', import.meta.url)
 ).then((res) => res.arrayBuffer());
-
-// const semiboldFont = fetch(
-//   new URL('/public/assets/inter-semibold.ttf', import.meta.url)
-// ).then((res) => res.arrayBuffer());
-
-// const boldFont = fetch(
-//   new URL('/public/assets/inter-bold.ttf', import.meta.url)
-// ).then((res) => res.arrayBuffer());
-
-type GradientTitle = Pick<
-  CSSProperties,
-  'color' | 'backgroundClip' | 'backgroundImage'
->;
 
 const gradientTitleStyles: GradientTitle = {
   color: 'transparent',
