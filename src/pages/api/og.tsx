@@ -7,29 +7,23 @@ export const config = {
 
 export default function handler(req: NextRequest) {
   const { searchParams } = req.nextUrl;
-
   const title = searchParams.get('title') || 'Mamskie';
-  const description = searchParams.get('description') || 'mamskie.me';
 
   return new ImageResponse(
     (
       <div
         style={{
+          display: 'flex',
           height: '100%',
           width: '100%',
-          display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           backgroundColor: '#000',
           color: '#fff',
-          fontSize: '48px',
-          textAlign: 'center',
+          fontSize: 64,
         }}
       >
-        <div>{title}</div>
-        <div style={{ fontSize: '24px', color: '#ccc', marginTop: '16px' }}>
-          {description}
-        </div>
+        {title}
       </div>
     ),
     {
