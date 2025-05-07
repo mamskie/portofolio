@@ -9,9 +9,11 @@ import type { NextRequest } from 'next/server';
 export default async function handler(
   req: NextRequest
 ): Promise<ImageResponse> {
-  const [regularFontData, mediumFontData] = await Promise.all([
-    regularFont,
-    mediumFont
+  // const [regularFontData, mediumFontData] = await Promise.all([
+  //   regularFont,
+  //   mediumFont
+  const [regularFontData] = await Promise.all([
+    regularFont
   ]);
 
   const { searchParams } = req.nextUrl;
@@ -31,7 +33,8 @@ export default async function handler(
           <div tw='flex w-full justify-between'>
             <div tw='flex flex-col justify-between'>
               <div tw='flex flex-col'>
-                <p tw='-my-2 text-xl font-medium text-gray-400'>
+{/*                 <p tw='-my-2 text-xl font-medium text-gray-400'> */}
+                <p tw='-my-2 text-xl text-gray-400'>
                   mamskie.me/{type}
                 </p>
                 <h2 style={gradientTitleStyles} tw='max-w-xl text-4xl'>
@@ -47,8 +50,10 @@ export default async function handler(
                 />
                 <div tw='ml-4 flex flex-col'>
                   {/* Originally semibold */}
-                  <p tw='-mb-4 text-2xl font-medium'>M. Khotibul Umam</p>
-                  <p tw='text-lg font-medium text-gray-400'>@mamskie</p>
+{/*                   <p tw='-mb-4 text-2xl font-medium'>M. Khotibul Umam</p>
+                  <p tw='text-lg font-medium text-gray-400'>@mamskie</p> */}
+                    <p tw='-mb-4 text-2xl'>M. Khotibul Umam</p>
+                  <p tw='text-lg text-gray-400'>@mamskie</p>
                 </div>
               </div>
             </div>
@@ -71,7 +76,8 @@ export default async function handler(
             </h2>
             {/* Originally semibold */}
             {!isHomepage && (
-              <p tw='text-2xl font-medium text-gray-200'>mamskie.me</p>
+              // <p tw='text-2xl font-medium text-gray-200'>mamskie.me</p>
+              <p tw='text-2xl text-gray-200'>mamskie.me</p>
             )}
             <p tw='max-w-4xl text-center text-2xl text-gray-300'>
               {description}
