@@ -14,8 +14,8 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Download deps
-        run: npm ci
+      - name: Install deps
+        run: npm install
 
       - name: Check types
         run: npm run type-check
@@ -27,8 +27,8 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Download deps
-        run: npm ci
+      - name: Install deps
+        run: npm install
 
       - name: Lint
         run: npm run lint
@@ -40,8 +40,8 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Download deps
-        run: npm ci
+      - name: Install deps
+        run: npm install
 
       - name: Format
         run: npm run format
@@ -53,8 +53,8 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Download deps
-        run: npm ci
+      - name: Install deps
+        run: npm install
 
       - name: Test
         run: npm run test:ci
