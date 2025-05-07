@@ -114,11 +114,11 @@ export const config: PageConfig = {
 };
 
 const regularFont = fetch(
-  new URL('/public/assets/inter-regular.ttf', import.meta.url)
+  new URL('/public/assets/inter-regular.otf', import.meta.url)
 ).then((res) => res.arrayBuffer());
 
 const mediumFont = fetch(
-  new URL('/public/assets/inter-medium.ttf', import.meta.url)
+  new URL('/public/assets/inter-medium.otf', import.meta.url)
 ).then((res) => res.arrayBuffer());
 
 // const semiboldFont = fetch(
