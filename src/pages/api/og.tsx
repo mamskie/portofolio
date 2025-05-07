@@ -3,7 +3,7 @@ import { ImageResponse } from '@vercel/og';
 import type { CSSProperties } from 'react';
 import type { PageConfig } from 'next';
 import type { NextRequest } from 'next/server';
-import getFonts from '@/lib/getFonts'; // pastikan path ini sesuai dengan lokasi file kamu
+import getFonts from '@lib/getFonts'; // pastikan path ini sesuai dengan lokasi file kamu
 import { PUBLIC_URL } from '@lib/env';
 
 export const config: PageConfig = {
