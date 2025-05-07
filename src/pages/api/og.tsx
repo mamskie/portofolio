@@ -1,22 +1,3 @@
-import { FlatCompat } from '@eslint/eslintrc'
-
-const compat = new FlatCompat({
-  // import.meta.dirname is available after Node.js v20.11.0
-  baseDirectory: import.meta.dirname,
-})
-
-const eslintConfig = [
-  ...compat.config({
-    extends: ['next'],
-    rules: {
-      'react/no-unescaped-entities': 'off',
-      '@next/next/no-page-custom-font': 'off',
-    },
-  }),
-]
-
-export default eslintConfig
-
 /* eslint-disable @next/next/no-img-element */
 
 import { ImageResponse } from '@vercel/og';
@@ -45,7 +26,7 @@ export default async function handler(
 
   return new ImageResponse(
     (
-      <div tw='flex h-full w-full bg-black p-8 text-white '>
+      <div tw='flex h-full w-full bg-black p-8 text-white'>
         {article ? (
           <div tw='flex w-full justify-between'>
             <div tw='flex flex-col justify-between'>
@@ -65,7 +46,6 @@ export default async function handler(
                   alt='Emilia'
                 />
                 <div tw='ml-4 flex flex-col'>
-                  {/* Originally semibold */}
                   <p tw='-mb-4 text-2xl font-medium'>M. Khotibul Umam</p>
                   <p tw='text-lg font-medium text-gray-400'>@mamskie</p>
                 </div>
@@ -83,12 +63,11 @@ export default async function handler(
             <img
               tw='h-24 w-24'
               src={`${PUBLIC_URL}/logo512.png`}
-              alt="mamskie.me's logo"
+              alt='mamskie.me logo'
             />
             <h2 style={gradientTitleStyles} tw='pb-1 text-6xl'>
               {isHomepage ? 'Mamskie' : title}
             </h2>
-            {/* Originally semibold */}
             {!isHomepage && (
               <p tw='text-2xl font-medium text-gray-200'>mamskie.me</p>
             )}
@@ -109,20 +88,10 @@ export default async function handler(
           weight: 400
         },
         {
-         name: 'Inter',
-         data: mediumFontData,
-         weight: 500
+          name: 'Inter',
+          data: mediumFontData,
+          weight: 500
         }
-        // {
-        //   name: 'Inter',
-        //   data: semiBoldFontData,
-        //   weight: 600
-        // },
-        // {
-        //   name: 'Inter',
-        //   data: boldFontData,
-        //   weight: 700
-        // }
       ]
     }
   );
@@ -137,16 +106,8 @@ const regularFont = fetch(
 ).then((res) => res.arrayBuffer());
 
 const mediumFont = fetch(
- new URL('/public/assets/inter-medium.ttf', import.meta.url)
+  new URL('/public/assets/inter-medium.ttf', import.meta.url)
 ).then((res) => res.arrayBuffer());
-
-// const semiboldFont = fetch(
-//   new URL('/public/assets/inter-semibold.ttf', import.meta.url)
-// ).then((res) => res.arrayBuffer());
-
-// const boldFont = fetch(
-//   new URL('/public/assets/inter-bold.ttf', import.meta.url)
-// ).then((res) => res.arrayBuffer());
 
 type GradientTitle = Pick<
   CSSProperties,
