@@ -1,3 +1,22 @@
+import { FlatCompat } from '@eslint/eslintrc'
+
+const compat = new FlatCompat({
+  // import.meta.dirname is available after Node.js v20.11.0
+  baseDirectory: import.meta.dirname,
+})
+
+const eslintConfig = [
+  ...compat.config({
+    extends: ['next'],
+    rules: {
+      'react/no-unescaped-entities': 'off',
+      '@next/next/no-page-custom-font': 'off',
+    },
+  }),
+]
+
+export default eslintConfig
+
 /* eslint-disable @next/next/no-img-element */
 
 import { ImageResponse } from '@vercel/og';
@@ -90,10 +109,10 @@ export default async function handler(
           weight: 400
         },
         {
-        //  name: 'Inter',
-        //  data: mediumFontData,
-        //  weight: 500
-        //}
+         name: 'Inter',
+         data: mediumFontData,
+         weight: 500
+        }
         // {
         //   name: 'Inter',
         //   data: semiBoldFontData,
@@ -117,9 +136,9 @@ const regularFont = fetch(
   new URL('/public/assets/inter-regular.ttf', import.meta.url)
 ).then((res) => res.arrayBuffer());
 
-//const mediumFont = fetch(
-//  new URL('/public/assets/inter-medium.ttf', import.meta.url)
-//).then((res) => res.arrayBuffer());
+const mediumFont = fetch(
+ new URL('/public/assets/inter-medium.ttf', import.meta.url)
+).then((res) => res.arrayBuffer());
 
 // const semiboldFont = fetch(
 //   new URL('/public/assets/inter-semibold.ttf', import.meta.url)
