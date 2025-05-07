@@ -26,7 +26,7 @@ export default async function handler(
 
   return new ImageResponse(
     (
-      <div tw='flex h-full w-full bg-black p-8 text-white'>
+      <div tw='flex h-full w-full bg-black p-8 text-white '>
         {article ? (
           <div tw='flex w-full justify-between'>
             <div tw='flex flex-col justify-between'>
@@ -46,6 +46,7 @@ export default async function handler(
                   alt='Emilia'
                 />
                 <div tw='ml-4 flex flex-col'>
+                  {/* Originally semibold */}
                   <p tw='-mb-4 text-2xl font-medium'>M. Khotibul Umam</p>
                   <p tw='text-lg font-medium text-gray-400'>@mamskie</p>
                 </div>
@@ -63,11 +64,12 @@ export default async function handler(
             <img
               tw='h-24 w-24'
               src={`${PUBLIC_URL}/logo512.png`}
-              alt='mamskie.me logo'
+              alt="mamskie.me's logo"
             />
             <h2 style={gradientTitleStyles} tw='pb-1 text-6xl'>
               {isHomepage ? 'Mamskie' : title}
             </h2>
+            {/* Originally semibold */}
             {!isHomepage && (
               <p tw='text-2xl font-medium text-gray-200'>mamskie.me</p>
             )}
@@ -92,6 +94,16 @@ export default async function handler(
           data: mediumFontData,
           weight: 500
         }
+        // {
+        //   name: 'Inter',
+        //   data: semiBoldFontData,
+        //   weight: 600
+        // },
+        // {
+        //   name: 'Inter',
+        //   data: boldFontData,
+        //   weight: 700
+        // }
       ]
     }
   );
@@ -108,6 +120,14 @@ const regularFont = fetch(
 const mediumFont = fetch(
   new URL('/public/assets/inter-medium.ttf', import.meta.url)
 ).then((res) => res.arrayBuffer());
+
+// const semiboldFont = fetch(
+//   new URL('/public/assets/inter-semibold.ttf', import.meta.url)
+// ).then((res) => res.arrayBuffer());
+
+// const boldFont = fetch(
+//   new URL('/public/assets/inter-bold.ttf', import.meta.url)
+// ).then((res) => res.arrayBuffer());
 
 type GradientTitle = Pick<
   CSSProperties,
