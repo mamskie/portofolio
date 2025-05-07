@@ -88,12 +88,12 @@ export default async function handler(
           name: 'Inter',
           data: regularFontData,
           weight: 400
-        },
-        {
-          name: 'Inter',
-          data: mediumFontData,
-          weight: 500
         }
+        // {
+        //   name: 'Inter',
+        //   data: mediumFontData,
+        //   weight: 500
+        // }
         // {
         //   name: 'Inter',
         //   data: semiBoldFontData,
@@ -118,9 +118,9 @@ const regularFont = fetch(
   new URL('/public/assets/inter-regular.otf', import.meta.url)
 ).then((res) => res.arrayBuffer());
 
-const mediumFont = fetch(
-  new URL('/public/assets/inter-medium.otf', import.meta.url)
-).then((res) => res.arrayBuffer());
+// const mediumFont = fetch(
+//   new URL('/public/assets/inter-medium.otf', import.meta.url)
+// ).then((res) => res.arrayBuffer());
 
 // const semiboldFont = fetch(
 //   new URL('/public/assets/inter-semibold.ttf', import.meta.url)
