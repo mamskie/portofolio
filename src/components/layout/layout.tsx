@@ -1,4 +1,4 @@
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Footer } from './footer';
 import { Header } from './header';
 import type { PropsWithChildren } from 'react';
