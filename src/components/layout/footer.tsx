@@ -112,7 +112,7 @@ const socialLinks: SocialLink[] = [
   {
     tip: "I'm also on",
     name: 'Discord',
-    href: 'https://discord.com/users/414304208649453568',
+    href: 'https://discord.com/users/760491411727843409',
     Icon: SiDiscord
   },
   {
