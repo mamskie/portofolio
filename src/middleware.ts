@@ -8,6 +8,13 @@ import { OWNER_BEARER_TOKEN, PUBLIC_URL, IS_DEVELOPMENT } from '@lib/env';
 import type { NextRequest } from 'next/server';
 
 export function middleware(req: NextRequest): NextResponse {
+  const { method, nextUrl } = req;
+
+  // Allow public access to GET /api/guestbook
+  if (method === 'GET' && nextUrl.pathname === '/api/guestbook') {
+    return NextResponse.next();
+  }
+
   const origin = getOrigin(req);
 
   const isValidOrigin = IS_DEVELOPMENT
