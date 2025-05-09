@@ -11,9 +11,8 @@ export function middleware(req: NextRequest): NextResponse {
   const { method, nextUrl } = req;
 
   // Allow public access to GET /api/guestbook
-  if (method === 'GET' && nextUrl.pathname === '/api/guestbook') {
+  if (method === 'GET' && nextUrl.pathname === '/api/guestbook')
     return NextResponse.next();
-  }
 
   const origin = getOrigin(req);
 

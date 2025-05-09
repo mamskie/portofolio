@@ -1,0 +1,85 @@
+import Banner from '/public/assets/projects/terminal/banner.png';
+import { ContentLayout } from '@components/layout/content-layout';
+import { getContentSlug } from '@lib/mdx';
+
+export const meta = {
+  title: 'Terminal Portfolio',
+  publishedAt: '2025-05-08',
+  banner: Banner,
+  description:
+    'Terminal Portfolio is a terminal-like web app that showcases your portfolio through a unique command-line interface. Experience an interactive terminal that gives a retro yet modern feel for showcasing your work and skills.',
+  tags: 'tailwindcss,typescript',
+  category: 'Personal Project',
+  github: 'https://github.com/mamskie/Terminal',
+  link: 'https://terminal-mamskie.vercel.app'
+};
+
+export const getStaticProps = getContentSlug('projects', 'terminal-portfolio');
+
+export default ({ children }) => (
+  <ContentLayout meta={meta}>{children}</ContentLayout>
+);
+
+{/* content start */}
+
+## Overview
+
+**Terminal Portfolio** is an interactive web application that presents your portfolio in the form of a terminal. The app uses a command-line interface to showcase your work, making it a unique and engaging way to demonstrate your skills. It offers a retro and modern fusion of design that provides an immersive experience for users.
+
+<div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+  <img
+    src='https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB'
+    alt='React'
+  />
+  <img
+    src='https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white'
+    alt='TypeScript'
+  />
+  <img
+    src='https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white'
+    alt='Vite'
+  />
+  <img
+    src='https://img.shields.io/badge/Styled%20Components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white'
+    alt='Styled Components'
+  />
+</div>
+
+## The Tech Stack
+
+This application was built using:
+
+- **React** for building the user interface
+- **TypeScript** for static typing and better development experience
+- **Vite** for fast bundling and development
+- **Styled Components** for scoped CSS styling in JS
+
+## Features
+
+- 💻 **Interactive Command-Line Interface** to showcase projects
+- 📱 **Responsive Design** to work across various screen sizes
+- 🌈 **Dark and Light Themes** for customizable viewing experiences
+- ⚡ **Fast Performance** powered by Vite for quick load times
+- 📂 **Modular Structure** for easy extensibility
+
+## Implementation Highlights
+
+- Built a retro terminal-style UI using styled-components for a clean design.
+- Implemented Vite for fast and optimized development and build processes.
+- Used TypeScript for type safety and improved maintainability.
+- Designed the portfolio to be interactive with clear instructions for users to navigate.
+
+## Future Enhancements
+
+- 🔄 Adding animations for smoother transitions between commands
+- 🔐 Integrating a contact form for direct communication
+- 🎨 Customizable themes to allow users to personalize their terminal
+
+## Conclusion
+
+**Terminal Portfolio** is a fun and innovative way to present a portfolio. It allowed me to dive into building a creative user interface with modern development tools and techniques, while also providing an interactive experience that stands out.
+
+🔗 Try it here: [Live App](https://terminal-mamskie.vercel.app)  
+🛠️ View the code on [GitHub](https://github.com/mamskie/Terminal)
+
+Thanks for exploring this project!

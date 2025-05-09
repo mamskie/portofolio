@@ -6,6 +6,7 @@ import { Router, useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { Analytics } from '@vercel/analytics/react';
 import { ThemeProvider } from 'next-themes';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Layout } from '@components/layout/layout';
 import { AppHead } from '@components/common/app-head';
 import type { AppProps } from 'next/app';
@@ -35,6 +36,7 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
         </Layout>
       </ThemeProvider>
       <Analytics />
+      <SpeedInsights />
     </>
   );
 }

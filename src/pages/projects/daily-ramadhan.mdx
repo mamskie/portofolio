@@ -1,0 +1,98 @@
+import Banner from '/public/assets/projects/ramadhan/banner.png';
+import { ContentLayout } from '@components/layout/content-layout';
+import { getContentSlug } from '@lib/mdx';
+
+export const meta = {
+  title: 'Daily Ramadhan',
+  publishedAt: '2024-03-10',
+  banner: Banner,
+  description:
+    'Daily Ramadhan is an application designed to help you stay on track with your spiritual journey during the holy month of Ramadhan. Track your prayers and daily activities with a clean and responsive interface.',
+  tags: 'tailwindcss,typescript',
+  category: 'Personal Project',
+  github: 'https://github.com/mamskie/daily-ramadhan',
+  link: 'https://daily-ramadhan.vercel.app' // Ganti jika sudah live
+};
+
+export const getStaticProps = getContentSlug('projects', 'daily-ramadhan');
+
+export default ({ children }) => (
+  <ContentLayout meta={meta}>{children}</ContentLayout>
+);
+
+{/* content start */}
+
+## Overview
+
+**Daily Ramadhan** is a spiritual companion app designed to help Muslims stay consistent with their worship during the holy month of Ramadhan. Users can track daily prayers and Ramadhan activities with a beautifully styled, responsive interface.
+
+<div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+  <img
+    src='https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB'
+    alt='React'
+  />
+  <img
+    src='https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white'
+    alt='TypeScript'
+  />
+  <img
+    src='https://img.shields.io/badge/TailwindCSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white'
+    alt='Tailwind CSS'
+  />
+  <img
+    src='https://img.shields.io/badge/shadcn/ui-000000?style=for-the-badge&logo=vercel&logoColor=white'
+    alt='shadcn/ui'
+  />
+  <img
+    src='https://img.shields.io/badge/i18next-26A69A?style=for-the-badge&logo=react&logoColor=white'
+    alt='i18next'
+  />
+  <img
+    src='https://img.shields.io/badge/date--fns-0081CB?style=for-the-badge&logo=javascript&logoColor=white'
+    alt='date-fns'
+  />
+</div>
+
+## The Tech Stack
+
+This application was built using:
+
+- **React** for building the user interface
+- **TypeScript** for static typing
+- **Tailwind CSS** for rapid styling and responsiveness
+- **shadcn/ui** for prebuilt accessible components
+- **i18next** for multilingual support
+- **date-fns** for efficient date handling
+
+## Features
+
+- 🕌 **Prayer Tracking** (Shubuh, Dzuhr, Ashr, Maghrib, Isya, Tarawih)
+- 📅 **Daily Ramadhan Activity Logging**
+- 🎨 **Light and Dark Mode Support**
+- 💾 **Local Storage** to persist data on the user's device
+- 🌐 **Multilingual UI** with i18next
+- 📱 **Fully Responsive Design**
+
+## Implementation Highlights
+
+- Designed a minimal, clean interface with dark/light mode toggle.
+- Used local storage to keep user data private and persistent.
+- Leveraged i18next for future multi-language support.
+- Used shadcn/ui for consistent design and accessibility.
+- Efficiently managed date handling with date-fns.
+
+## Future Enhancements
+
+- 🔔 Daily reminders and motivational messages
+- 📊 Activity analytics (weekly/monthly)
+- ☁️ Option to sync data via cloud storage
+- 📆 Integration with Hijri calendar
+
+## Conclusion
+
+**Daily Ramadhan** is a meaningful project that allowed me to combine design, development, and faith. It helped me practice good UI/UX design and learn to build a self-contained app with modern tools.
+
+🔗 Try it here: [Live App](https://daily-ramadhan.vercel.app)  
+🛠️ View the code on [GitHub](https://github.com/mamskie/daily-ramadhan)
+
+Thank you for exploring this project!
