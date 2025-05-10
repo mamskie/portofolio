@@ -1,13 +1,20 @@
 import { motion } from 'framer-motion';
 import { useTheme } from 'next-themes';
 import { clsx } from 'clsx';
+import Image from 'next/image';
+import { useState, useEffect } from 'react';
 import { setTransition } from '@lib/transition';
 import { SEO } from '@components/common/seo';
 import { Accent } from '@components/ui/accent';
 import { ThemeSwitch } from '@components/common/theme-switch';
 
 export default function Design(): JSX.Element {
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <main className='grid min-h-screen content-start gap-6'>
@@ -31,7 +38,9 @@ export default function Design(): JSX.Element {
         {...setTransition({ delayIn: 0.3 })}
       >
         <div className='flex justify-between'>
-          <h2 className='text-4xl font-bold capitalize'>{theme} Mode</h2>
+          <h2 className='text-4xl font-bold capitalize'>
+            {mounted ? `${resolvedTheme} Mode` : '...'}
+          </h2>
           <ThemeSwitch />
         </div>
         <p className='mt-2 text-gray-600 dark:text-gray-300'>
@@ -53,6 +62,14 @@ export default function Design(): JSX.Element {
           ))}
         </ul>
       </motion.section>
+      <Image
+        src='/assets/logo.png'
+        alt='Dark Mode Preview'
+        width={1920}
+        height={1080}
+        style={{ width: '100%', height: 'auto' }}
+        className='mt-6 rounded-md shadow-md mx-auto'
+      />
     </main>
   );
 }
@@ -127,5 +144,15 @@ const colorPalette = [
     title: 'Gradient Color',
     hexCode: '#0011FFFF to #00EEFFFF',
     className: 'bg-gradient-to-tr from-accent-start to-accent-end'
+  },
+  {
+    title: 'Accent Color',
+    hexCode: '#0011FFFF',
+    className: 'bg-accent-start'
+  },
+  {
+    title: 'Accent Color 2',
+    hexCode: '#00EEFFFF',
+    className: 'bg-accent-end'
   }
 ] as const;

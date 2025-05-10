@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { signIn, signOut } from 'next-auth/react';
 import { clsx } from 'clsx';
-import { SiGithub } from 'react-icons/si';
+import { SiGithub, SiGoogle } from 'react-icons/si';
 import { Button } from '@components/ui/button';
 import type { Text } from '@lib/types/guestbook';
 import type { FormEvent } from 'react';
@@ -63,14 +63,23 @@ export function GuestbookForm({
             Send
           </Button>
         ) : (
-          <Button
-            className='custom-button clickable flex items-center gap-2 whitespace-nowrap
-                       font-bold text-gray-600 dark:text-gray-300'
-            onClick={handleSignIn}
-          >
-            <SiGithub className='h-5 w-5' />
-            Sign in
-          </Button>
+          <>
+            <Button
+              className='custom-button clickable flex items-center gap-2 font-bold text-gray-600 dark:text-gray-300'
+              onClick={() => signIn('github')}
+            >
+              <SiGithub className='h-5 w-5' />
+              GitHub
+            </Button>
+
+            <Button
+              className='custom-button clickable flex items-center gap-2 font-bold text-gray-600 dark:text-gray-300'
+              onClick={() => signIn('google')}
+            >
+              <SiGoogle className='h-5 w-5' />
+              Google
+            </Button>
+          </>
         )}
       </form>
       {session && (

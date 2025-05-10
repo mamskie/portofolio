@@ -9,6 +9,7 @@ export type Guestbook = {
   username: string;
   createdAt: Timestamp;
   createdBy: string;
+  provider: string; // ✅ Tambah ini
 };
 
 export type Text = Guestbook['text'];

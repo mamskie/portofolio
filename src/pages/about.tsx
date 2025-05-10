@@ -15,7 +15,10 @@ import type { IconType } from 'react-icons';
 export default function About(): JSX.Element {
   return (
     <main className='layout min-h-screen'>
-      <SEO title='About' description='M. Khotibul Umam is a Fresh Graduate from Information System' />
+      <SEO
+        title='About'
+        description='M. Khotibul Umam is a Fresh Graduate from Information System'
+      />
       <section className='grid gap-2'>
         <motion.h2
           className='text-xl font-bold md:text-3xl'
@@ -36,30 +39,35 @@ export default function About(): JSX.Element {
           {...setTransition({ delayIn: 0.2 })}
         >
           <p>
-            Hi, I&apos;m M. Khotibul Umam, an Information Systems graduate from 
-            UIN Sunan Ampel Surabaya with a strong interest in web development, 
-            system governance, and internal audit. My journey in tech began by 
-            developing web-based archive management systems using 
-            <CustomLink href='https://laravel.com'> Laravel</CustomLink> during 
-            my internship at PT Presindo Central, where I also worked with 
-            <CustomLink href='https://getbootstrap.com'> Bootstrap</CustomLink> 
+            Hi, I&apos;m M. Khotibul Umam, an Information Systems graduate from
+            UIN Sunan Ampel Surabaya with a strong interest in web development,
+            system governance, and internal audit. My journey in tech began by
+            developing web-based archive management systems using
+            <CustomLink href='https://laravel.com'> Laravel</CustomLink> during
+            my internship at PT Presindo Central, where I also worked with
+            <CustomLink href='https://getbootstrap.com'> Bootstrap</CustomLink>
             and REST API integration.
           </p>
           <p>
-            I continued growing professionally at PT Pelabuhan Indonesia Regional 3,
-             contributing to internal audits across branches using ISO 9001, ISO 14001, 
-             ISPS Code, and SMK3 standards. I was also involved in risk management, 
-             compliance monitoring, and building Business Continuity Management (BCM) 
-             schemes for cybersecurity scenarios. This hands-on experience helped sharpen 
-             my skills in data analysis, reporting, and enterprise-level systems evaluation.
+            I continued growing professionally at PT Pelabuhan Indonesia
+            Regional 3, contributing to internal audits across branches using
+            ISO 9001, ISO 14001, ISPS Code, and SMK3 standards. I was also
+            involved in risk management, compliance monitoring, and building
+            Business Continuity Management (BCM) schemes for cybersecurity
+            scenarios. This hands-on experience helped sharpen my skills in data
+            analysis, reporting, and enterprise-level systems evaluation.
           </p>
           <p>
-            I enjoy working on data-driven projects, like when I created a dashboard 
-            to visualize water quality changes in Banjarmasin using 
-            <CustomLink href='https://powerbi.microsoft.com'> Power BI</CustomLink>. 
-            I&apos;m always eager to learn, build, and collaborate—this site is where I 
-            showcase my work, share insights, and reflect on what I&apos;ve learned. 
-            Feel free to reach out if you&apos;d like to connect or collaborate!
+            I enjoy working on data-driven projects, like when I created a
+            dashboard to visualize water quality changes in Banjarmasin using
+            <CustomLink href='https://powerbi.microsoft.com'>
+              {' '}
+              Power BI
+            </CustomLink>
+            . I&apos;m always eager to learn, build, and collaborate—this site
+            is where I showcase my work, share insights, and reflect on what
+            I&apos;ve learned. Feel free to reach out if you&apos;d like to
+            connect or collaborate!
           </p>
         </motion.article>
       </section>
@@ -115,7 +123,7 @@ const favoriteTechStack: FavoriteTechStack[] = [
     tip: 'a PHP framework for web artisans, providing elegant syntax and tools for building modern web applications.',
     name: 'Laravel',
     href: 'https://laravel.com',
-    Icon: SiLaravel 
+    Icon: SiLaravel
   },
   {
     tip: 'a strongly typed language that builds on JavaScript, giving you better tooling at any scale.',

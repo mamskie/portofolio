@@ -9,6 +9,7 @@ export function LazyImage({
   width,
   height,
   className,
+  fetchPriority,
   ...rest
 }: ImageProps): JSX.Element {
   const [loading, setLoading] = useState(true);
@@ -26,6 +27,7 @@ export function LazyImage({
       width={width}
       height={height}
       onLoadingComplete={handleLoadingComplete}
+      fetchPriority={fetchPriority}
       {...rest}
     />
   );

@@ -47,12 +47,12 @@ export default function Home({
                      md:mt-6 md:text-lg 2xl:text-xl'
           {...setTransition({ delayIn: 0.2 })}
         >
-          I&apos;m a self-taught developer, who&apos;s experienced in the
-           field of Information Systems with expertise in IT management, 
-           risk management, web development, and system integration. Highly 
-           motivated to learn, solution-oriented thinker, and able to adapt 
-           quickly in various situations. Ready to contribute effectively 
-           and grow together with the team.
+          I&apos;m a self-taught developer, who&apos;s experienced in the field
+          of Information Systems with expertise in IT management, risk
+          management, web development, and system integration. Highly motivated
+          to learn, solution-oriented thinker, and able to adapt quickly in
+          various situations. Ready to contribute effectively and grow together
+          with the team.
         </motion.p>
         <motion.section
           className='mt-8 flex gap-4 text-sm md:text-base'

@@ -45,9 +45,7 @@ export function SEO({
 
   const { colorScheme, themeColor } = systemTheme[+isDarkMode];
 
-  const ogTitle = `${title} | ${
-    isHomepage ? 'Information System' : 'Mamskie'
-  }`;
+  const ogTitle = `${title} | ${isHomepage ? 'Information System' : 'Mamskie'}`;
 
   const ogImageUrl = `${PUBLIC_URL}/api/og?${ogImageQuery.toString()}`;
 

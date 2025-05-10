@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { HiTrash } from 'react-icons/hi2';
+import { SiGithub, SiGoogle } from 'react-icons/si';
 import { formatFullTimeStamp, formatTimestamp } from '@lib/format';
 import { UnstyledLink } from '@components/link/unstyled-link';
 import { Button } from '@components/ui/button';
@@ -24,6 +25,7 @@ export function GuestbookEntry({
   username,
   createdAt,
   createdBy,
+  provider, // ✅ ambil provider dari props
   unRegisterGuestbook
 }: GuestbookEntryProps): JSX.Element {
   const [loading, setLoading] = useState(false);
@@ -35,7 +37,10 @@ export function GuestbookEntry({
 
   const isOwner = session?.user.id === createdBy || session?.user.admin;
 
-  const githubProfileUrl = `https://github.com/${username}`;
+  const profileUrl =
+    provider === 'google'
+      ? `mailto:${username}` // karena username = email
+      : `https://github.com/${username}`;
 
   return (
     <motion.article
@@ -43,7 +48,7 @@ export function GuestbookEntry({
       layout='position'
       {...variants}
     >
-      <UnstyledLink className='smooth-tab' href={githubProfileUrl}>
+      <UnstyledLink className='smooth-tab' href={profileUrl}>
         <LazyImage
           className='main-border rounded-full transition hover:brightness-75'
           src={image}
@@ -57,9 +62,14 @@ export function GuestbookEntry({
           <UnstyledLink
             className='custom-underline truncate font-bold'
             title={name}
-            href={githubProfileUrl}
+            href={profileUrl}
           >
             {name}
+            {provider === 'google' ? (
+              <SiGoogle className='inline h-4 w-4 text-blue-500 ml-1' />
+            ) : (
+              <SiGithub className='inline h-4 w-4 text-gray-500 ml-1' />
+            )}
           </UnstyledLink>
           <Tooltip
             className='whitespace-nowrap'
