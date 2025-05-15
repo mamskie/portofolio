@@ -22,6 +22,7 @@ type CustomUser = AssertedUser & {
   id: string;
   admin: boolean;
   username: string;
+  provider: string;
 };
 
 export type CustomSession = Session & {

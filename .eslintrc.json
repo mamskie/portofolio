@@ -20,7 +20,7 @@
   },
   "rules": {
     "semi": ["error", "always"],
-    "curly": ["warn", "multi", "error", "all"],
+    "curly": ["error", "multi-line", "consistent"],
     "quotes": ["error", "single", { "avoidEscape": true }],
     "jsx-quotes": ["error", "prefer-single"],
     "linebreak-style": ["error", "unix"],

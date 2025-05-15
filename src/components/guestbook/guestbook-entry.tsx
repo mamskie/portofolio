@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { HiTrash } from 'react-icons/hi2';
 import { SiGithub, SiGoogle } from 'react-icons/si';
+import { VscVerifiedFilled } from 'react-icons/vsc';
 import { formatFullTimeStamp, formatTimestamp } from '@lib/format';
 import { UnstyledLink } from '@components/link/unstyled-link';
 import { Button } from '@components/ui/button';
@@ -22,10 +23,11 @@ export function GuestbookEntry({
   name,
   image,
   session,
+  email,
   username,
   createdAt,
   createdBy,
-  provider, // ✅ ambil provider dari props
+  provider,
   unRegisterGuestbook
 }: GuestbookEntryProps): JSX.Element {
   const [loading, setLoading] = useState(false);
@@ -60,15 +62,18 @@ export function GuestbookEntry({
       <div className='min-w-0'>
         <div className='mr-10 flex items-end gap-2'>
           <UnstyledLink
-            className='custom-underline truncate font-bold'
+            className='custom-underline truncate font-bold flex items-center gap-x-2'
             title={name}
             href={profileUrl}
           >
-            {name}
             {provider === 'google' ? (
-              <SiGoogle className='inline h-4 w-4 text-blue-500 ml-1' />
+              <SiGoogle className='h-4 w-4 text-blue-500' />
             ) : (
-              <SiGithub className='inline h-4 w-4 text-gray-500 ml-1' />
+              <SiGithub className='h-4 w-4 text-gray-500' />
+            )}
+            <span>{name}</span>
+            {email === 'khotib.bul@gmail.com' && (
+              <VscVerifiedFilled className='h-4 w-4 text-blue-500' />
             )}
           </UnstyledLink>
           <Tooltip

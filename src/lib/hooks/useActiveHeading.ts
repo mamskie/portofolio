@@ -27,12 +27,13 @@ export function useActiveHeading(): string | null {
 
       for (const headingElement of Object.values(
         headingElementsRef.current as HeadingElementsRef
-      ))
+      )) {
         if (headingElement.isIntersecting) visibleHeadings.push(headingElement);
+      }
 
-      if (visibleHeadings.length === 1)
+      if (visibleHeadings.length === 1) {
         setActiveHeading(visibleHeadings[0].target.id);
-      else if (visibleHeadings.length > 1) {
+      } else if (visibleHeadings.length > 1) {
         const [firstVisibleHeading] = visibleHeadings.sort(
           ({ target: { id: firstId } }, { target: { id: secondId } }) =>
             getIndexFromHeadingId(firstId) - getIndexFromHeadingId(secondId)

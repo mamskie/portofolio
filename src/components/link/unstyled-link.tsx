@@ -12,12 +12,13 @@ export function UnstyledLink({
 }: UnstyledLinkProps): JSX.Element {
   const openInNewTab = !href.startsWith('/');
 
-  if (!openInNewTab)
+  if (!openInNewTab) {
     return (
       <Link href={href} {...rest}>
         {children}
       </Link>
     );
+  }
 
   const linkIsExternal = href.startsWith('http');
 

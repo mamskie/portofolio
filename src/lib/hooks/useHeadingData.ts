@@ -21,8 +21,9 @@ export function useHeadingData(): HeadingData[] {
       const { id, nodeName, textContent } = heading;
       const title = textContent as string;
 
-      if (nodeName === 'H2') acc.push({ id, title, items: [] });
-      else if (nodeName === 'H3' && acc.length) {
+      if (nodeName === 'H2') {
+        acc.push({ id, title, items: [] });
+      } else if (nodeName === 'H3' && acc.length) {
         const lastNestedHeading = acc[acc.length - 1];
         lastNestedHeading.items.push({ id, title });
       }

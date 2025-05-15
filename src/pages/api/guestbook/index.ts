@@ -32,8 +32,9 @@ export default async function handler(
 
       const { text } = req.body as Pick<Guestbook, 'text'>;
 
-      if (!text)
+      if (!text) {
         return res.status(422).json({ message: "Text can't be empty" });
+      }
 
       const { id: createdBy, admin: _, ...rest } = session.user;
 
@@ -57,8 +58,9 @@ export default async function handler(
       return res.status(201).json(newestGuestbook);
     }
   } catch (error) {
-    if (error instanceof Error)
+    if (error instanceof Error) {
       return res.status(500).json({ message: error.message });
+    }
 
     return res.status(500).json({ message: 'Internal server error' });
   }

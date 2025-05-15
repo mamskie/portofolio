@@ -11,8 +11,9 @@ export default async function handler(
 ): Promise<void> {
   const { type } = req.query as { type: ContentType };
 
-  if (!isValidContentType(type))
+  if (!isValidContentType(type)) {
     return res.status(400).json({ message: 'Invalid content type' });
+  }
 
   try {
     if (req.method === 'GET') {
@@ -21,8 +22,9 @@ export default async function handler(
       return res.status(200).json(contentStatistics);
     }
   } catch (error) {
-    if (error instanceof Error)
+    if (error instanceof Error) {
       return res.status(500).json({ message: error.message });
+    }
 
     return res.status(500).json({ message: 'Internal server error' });
   }

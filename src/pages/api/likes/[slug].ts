@@ -40,8 +40,9 @@ export default async function handler(
     }
 
     if (req.method === 'POST') {
-      if (userLikes >= 5)
+      if (userLikes >= 5) {
         return res.status(422).json({ message: 'Likes limit reached' });
+      }
 
       userLikes += 1;
 
@@ -55,8 +56,9 @@ export default async function handler(
       return res.status(201).json({ likes, userLikes });
     }
   } catch (error) {
-    if (error instanceof Error)
+    if (error instanceof Error) {
       return res.status(500).json({ message: error.message });
+    }
 
     return res.status(500).json({ message: 'Internal server error' });
   }

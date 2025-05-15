@@ -48,7 +48,9 @@ export function Header(): JSX.Element {
 const navLinks = [
   { name: 'Home', href: '/' },
   { name: 'About', href: '/about' },
+  { name: 'Resume', href: '/resume' },
   { name: 'Projects', href: '/projects' },
   { name: 'Guestbook', href: '/guestbook' },
+  { name: 'Contact', href: '/contact' },
   { name: 'Blog', href: '/blog' }
 ] as const;

@@ -43,11 +43,13 @@ type TimestampProps = Pick<Timestamp, 'seconds' | 'nanoseconds'>;
 export function formatTimestamp(timestamp: TimestampProps): string {
   const date = getDateFromTimestamp(timestamp);
 
-  if (dateIsToday(date))
+  if (dateIsToday(date)) {
     return `Today at ${SHORT_TIMESTAMP_FORMATTER.format(date)}`;
+  }
 
-  if (dateIsYesterday(date))
+  if (dateIsYesterday(date)) {
     return `Yesterday at ${SHORT_TIMESTAMP_FORMATTER.format(date)}`;
+  }
 
   return LONG_TIMESTAMP_FORMATTER.format(date);
 }

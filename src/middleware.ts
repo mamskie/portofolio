@@ -11,15 +11,16 @@ export function middleware(req: NextRequest): NextResponse {
   const origin = getOrigin(req);
 
   const isValidOrigin = IS_DEVELOPMENT
-    ? [PUBLIC_URL, 'http://mamskie.me'].includes(origin as string)
+    ? [PUBLIC_URL, 'http://localhost'].includes(origin as string)
     : origin === PUBLIC_URL;
 
   if (!isValidOrigin) return generateNextResponse(403, 'Forbidden');
 
   const bearerToken = getBearerToken(req);
 
-  if (bearerToken !== OWNER_BEARER_TOKEN)
+  if (bearerToken !== OWNER_BEARER_TOKEN) {
     return generateNextResponse(401, 'Unauthorized');
+  }
 
   return NextResponse.next();
 }

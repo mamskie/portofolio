@@ -97,9 +97,9 @@ export function GuestbookForm({
   );
 }
 
-function handleSignIn(): void {
-  void signIn('github');
-}
+// function handleSignIn(): void {
+//   void signIn('github');
+// }
 
 function handleSignOut(): void {
   void signOut();
