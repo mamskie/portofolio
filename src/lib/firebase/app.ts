@@ -6,7 +6,6 @@ import { getFirebaseConfig } from './config';
 const config = getFirebaseConfig();
 const app = getApps().length === 0 ? initializeApp(config) : getApps()[0];
 
-// Optional: Initialize Analytics only if supported (e.g. in browser)
 let analytics: ReturnType<typeof getAnalytics> | null = null;
 
 if (typeof window !== 'undefined') {
