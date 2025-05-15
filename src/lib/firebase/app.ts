@@ -10,7 +10,7 @@ const app = getApps().length === 0 ? initializeApp(config) : getApps()[0];
 let analytics: ReturnType<typeof getAnalytics> | null = null;
 
 if (typeof window !== 'undefined') {
-  isSupported().then((yes) => {
+  void isSupported().then((yes) => {
     if (yes) {
       analytics = getAnalytics(app);
     }
