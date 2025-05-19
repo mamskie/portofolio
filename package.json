@@ -18,7 +18,7 @@
     "check:all": "npm run sort-imports && npm run format && npm run preprod && npm run audit"
   },
   "dependencies": {
-    "@headlessui/react": "^1.7.7",
+    "@headlessui/react": "^2.0.0",
     "@mdx-js/loader": "^3.0.0",
     "@mdx-js/react": "^3.0.0",
     "@next/mdx": "^13.0.7",
