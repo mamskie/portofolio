@@ -35,5 +35,5 @@ type Config = {
 // };
 export const config: Config = {
   // Match all API routes except /api/auth/*, guestbook and /api/og
-  matcher: '/api/((?!auth|guestbook|og).*)'
+  matcher: '/api/((?!auth|guestbook|spotify|og).*)'
 };
