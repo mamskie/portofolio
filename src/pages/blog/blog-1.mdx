@@ -1,4 +1,4 @@
-import Banner from '/public/assets/blog/custom-layout-in-nextjs/banner.jpg';
+import Banner from '/public/assets/blog/blog-1/banner.jpg';
 import { ContentLayout } from '@components/layout/content-layout';
 import { getContentSlug } from '@lib/mdx';
 
@@ -13,7 +13,11 @@ export const meta = {
   tags: 'firebase, auth, github'
 };
 
-export const getStaticProps = getContentSlug('blog', 'custom-layout-in-nextjs');
+export const getStaticProps = getContentSlug(
+  'Authentication',
+  'GithubAuthProvider',
+  'Firebase'
+);
 
 export default ({ children }) => (
   <ContentLayout meta={meta}>{children}</ContentLayout>
