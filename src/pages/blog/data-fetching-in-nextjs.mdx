@@ -3,14 +3,14 @@ import { ContentLayout } from '@components/layout/content-layout';
 import { getContentSlug } from '@lib/mdx';
 
 export const meta = {
-  title: 'Data Fetching in Next.js',
+  title: 'Clerk Authentication',
   publishedAt: '2022-12-26',
   banner: Banner,
   bannerAlt: 'Photo by Irina Ermakova on Unsplash',
   bannerLink: 'https://unsplash.com/photos/rIsHXq2Bvho',
   description:
     'Learn about the different methods for fetching data in Next.js, including static generation, server-side rendering, and client-side rendering.',
-  tags: 'nextjs'
+  tags: 'nextjs, clerk, auth'
 };
 
 export const getStaticProps = getContentSlug('blog', 'data-fetching-in-nextjs');
@@ -21,149 +21,107 @@ export default ({ children }) => (
 
 {/* content start */}
 
-Next.js is a popular framework for building server-rendered React applications. One key feature of Next.js is its built-in support for data fetching, which allows you to easily retrieve data from APIs or other sources and pass it to your components.
+Clerk adalah layanan autentikasi modern yang memudahkan penambahan fitur sign-in, sign-up, dan manajemen pengguna secara aman di aplikasi Next.js Anda. Berikut adalah panduan langkah demi langkah mengintegrasikan Clerk di aplikasi Next.js Anda.
 
-## Static Generation
+## Langkah 1: Daftar dan Buat Aplikasi Clerk
 
-One way to fetch data in Next.js is through static generation. This method generates a static HTML file at build time, which means that the data is fetched before the application is deployed. This is useful for pages that don't change often, as the HTML is generated once and can be served quickly to users.
+Kunjungi https://clerk.dev dan buat akun. Buat aplikasi baru di dashboard Clerk Anda. Catat Frontend API key yang akan digunakan nanti.
 
-To fetch data during the build process, you can use the getStaticProps function in your page component. This function takes in a context object and returns an object with props that will be passed to the component. For example:
+## Langkah 2: Instalasi Clerk SDK
 
-```tsx
-import type { GetStaticPropsResult, InferGetStaticPropsType } from 'next';
+Jalankan perintah berikut di root project Next.js Anda: npm install @clerk/clerk-react @clerk/nextjs atau yarn add @clerk/clerk-react @clerk/nextjs
 
-type Post = {
-  id: number;
-  title: string;
-  body: string;
-};
+## Langkah 3: Konfigurasi ClerkProvider
 
-export async function getStaticProps(): Promise<GetStaticPropsResult<Post[]>> {
-  const res = await fetch('https://my-api.com/posts');
-  const data = await res.json();
+Bungkus aplikasi Anda dengan ClerkProvider untuk menyediakan konteks autentikasi. Edit file pages/\_app.tsx seperti berikut:
 
-  return {
-    props: {
-      posts: data
-    }
-  };
-}
+import { ClerkProvider } from '@clerk/nextjs';
+import type { AppProps } from 'next/app';
 
-export default function Posts({
-  posts
-}): InferGetStaticPropsType<typeof getStaticProps> {
+export default function App({ Component, pageProps }: AppProps) {
   return (
-    <section>
-      {props.posts.map(({ id, title, body }) => (
-        <article key={id}>
-          <h2>{title}</h2>
-          <p>{body}</p>
-        </article>
-      ))}
-    </section>
+    <ClerkProvider {...pageProps}>
+      <Component {...pageProps} />
+    </ClerkProvider>
   );
 }
-```
 
-In this example, the getStaticProps function fetches a list of posts from an API and passes them to the Posts component as props. The HTML for this page will be generated at build time with the data included.
+Pastikan environment variable yang diperlukan sudah diatur agar Clerk bisa berfungsi.
 
-## Server-Side Rendering
+## Langkah 4: Proteksi Halaman dengan Autentikasi
 
-Another way to fetch data in Next.js is through server-side rendering (SSR). This method generates the HTML for a page on the server on each request, allowing you to fetch data dynamically. This is useful for pages that change frequently or depend on user input.
+Gunakan HOC withAuth untuk membatasi akses halaman hanya bagi pengguna yang sudah login. Contoh di halaman profil:
 
-To fetch data during the server-side rendering process, you can use the getServerSideProps function in your page component. This function works similarly to getStaticProps, but it runs on the server on each request rather than at build time. For example:
+import { withAuth, UserButton } from '@clerk/nextjs';
 
-```tsx
-import type {
-  GetServerSidePropsResult,
-  InferGetServerSidePropsType
-} from 'next';
-
-type Post = {
-  id: number;
-  title: string;
-  body: string;
-};
-
-export async function getServerSideProps(): Promise<
-  getServerSideProps<Post[]>
-> {
-  const res = await fetch('https://my-api.com/posts');
-  const data = await res.json();
-
-  return {
-    props: {
-      posts: data
-    }
-  };
+function Profile() {
+return (
+<div>
+<h1>Profil Anda</h1>
+<UserButton />
+</div>
+);
 }
 
-export default function Posts({
-  posts
-}): InferGetServerSidePropsType<typeof getServerSideProps> {
-  return (
-    <section>
-      {props.posts.map(({ id, title, body }) => (
-        <article key={id}>
-          <h2>{title}</h2>
-          <p>{body}</p>
-        </article>
-      ))}
-    </section>
-  );
+export default withAuth(Profile);
+
+Pengguna yang belum login akan otomatis diarahkan ke halaman sign-in.
+
+## Langkah 5: Halaman Sign-In dan Sign-Up
+
+Manfaatkan komponen bawaan Clerk untuk halaman masuk dan daftar:
+
+// pages/sign-in.tsx
+import { SignIn } from '@clerk/nextjs';
+
+export default function SignInPage() {
+  return <SignIn path='/sign-in' routing='path' />;
 }
-```
 
-In this example, the getServerSideProps function fetches a list of posts from an API and passes them to the Posts component as props. The HTML for this page will be generated on the server on each request with the data included.
+// pages/sign-up.tsx
+import { SignUp } from '@clerk/nextjs';
 
-## Client-Side Rendering
-
-In addition to static generation and server-side rendering, Next.js also supports client-side rendering. This method generates the HTML for a page on the client using JavaScript, allowing you to fetch data asynchronously and update the page in real-time.
-
-To fetch data on the client, you can use the useEffect hook in your component to make a request to an API. For example:
-
-```tsx
-type Post = {
-  id: number;
-  title: string;
-  body: string;
-};
-
-export default function Posts(): JSX.Element {
-  const [posts, setPosts] = useState<Post[]>([]);
-
-  useEffect(() => {
-    const fetchData = async (): Promise<void> => {
-      const res = await fetch('https://my-api.com/posts');
-      const data = await res.json();
-
-      setPosts(data);
-    };
-
-    void fetchData();
-  }, []);
-
-  return (
-    <section>
-      {posts.map(({ id, title, body }) => (
-        <article key={id}>
-          <h2>{title}</h2>
-          <p>{body}</p>
-        </article>
-      ))}
-    </section>
-  );
+export default function SignUpPage() {
+  return <SignUp path='/sign-up' routing='path' />;
 }
-```
 
-In this example, the useEffect hook fetches a list of posts from an API and updates the posts state variable with the data. The component will then re-render with the updated data.
+## Langkah 6: Mengakses Data Pengguna
 
-## Choosing a Data Fetching Method
+Gunakan hook useUser untuk mendapatkan informasi pengguna di komponen mana pun:
 
-When deciding which method to use for data fetching in your Next.js application, consider the following factors:
+import { useUser } from '@clerk/nextjs';
 
-- **Static vs. dynamic data**: If your data is static and doesn't change often, static generation may be a good choice. If your data is dynamic and changes frequently, server-side rendering or client-side rendering may be more suitable.
-- **Performance**: Static generation is the most performant option, as the HTML is generated at build time and can be served quickly to users. Server-side rendering is also fast, but it requires generating the HTML on the server on each request. Client-side rendering is the least performant option, as it requires fetching and rendering the data on the client.
-- **Developer experience**: Static generation and server-side rendering require rebuilding the application to update the data, which can be time-consuming. Client-side rendering allows you to update the data in real-time, but it can be more complex to implement.
+export default function Dashboard() {
+  const { user } = useUser();
 
-In summary, Next.js provides several options for data fetching, each with its own benefits and trade-offs. Choose the method that best fits your application's needs and use case.
+return (
+<div>
+<h2>Selamat datang, {user.firstName}!</h2>
+<p>Email: {user.primaryEmailAddress.emailAddress}</p>
+</div>
+);
+}
+
+## Langkah 7: Atur Environment Variable
+
+Tambahkan kunci frontend Clerk ke .env.local:
+
+NEXT_PUBLIC_CLERK_FRONTEND_API=<your_frontend_api_key>
+
+Clerk SDK akan otomatis membaca variabel ini.
+
+## Langkah 8: Deployment
+
+Saat deploy (misal di Vercel), pastikan environment variable sudah diatur di setting project.
+
+---
+
+## Tips Tambahan
+
+Anda bisa menyesuaikan tampilan UI Clerk dengan mengoverride komponen atau styling. Kelola pengguna dan setting autentikasi dari dashboard Clerk. Clerk juga mendukung login sosial seperti Google, GitHub, dan lainnya dengan mudah.
+
+---
+
+Dengan integrasi Clerk, Anda dapat menambahkan autentikasi yang aman dan skalabel dengan setup minimal, sehingga bisa fokus mengembangkan fitur aplikasi Anda.
+
+{/* content end */}
