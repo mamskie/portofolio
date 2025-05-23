@@ -3,20 +3,17 @@ import { ContentLayout } from '@components/layout/content-layout';
 import { getContentSlug } from '@lib/mdx';
 
 export const meta = {
-  title: 'Belajar IT Gak Harus dari Jurusan IT',
+  title: 'Integrasi Firebase Authentication dengan GitHub',
   publishedAt: '2025-05-23',
   banner: Banner,
-  bannerAlt: 'A person learning from a laptop in a cozy corner',
-  bannerLink: 'https://unsplash.com/photos/learning-with-laptop',
+  bannerAlt: 'Photo by Milad Fakurian on Unsplash',
+  bannerLink: 'https://unsplash.com/photos/N_nbhTHtmYg',
   description:
-    'Your degree doesn’t define your future. This post encourages learners from any background to dive into IT.',
-  tags: 'motivation, career, beginner'
+    'Panduan lengkap mengintegrasikan Firebase Authentication menggunakan GitHub Sign-In di aplikasi Anda.',
+  tags: 'firebase, auth, github'
 };
 
-export const getStaticProps = getContentSlug(
-  'blog',
-  'belajar-it-tanpa-jurusan'
-);
+export const getStaticProps = getContentSlug('blog', 'custom-layout-in-nextjs');
 
 export default ({ children }) => (
   <ContentLayout meta={meta}>{children}</ContentLayout>
@@ -24,40 +21,87 @@ export default ({ children }) => (
 
 {/* content start */}
 
-## Introduction
+## 🔐 Tutorial: Integrasi Firebase Authentication dengan GitHub
 
-There’s a common misconception that to succeed in IT, you must have a formal degree in Computer Science or a related field. That simply isn’t true anymore.
+### 1. **Aktifkan GitHub Authentication di Firebase Console**
 
-In fact, many successful developers and IT professionals started from completely different backgrounds. Some didn’t even finish college!
+1. Masuk ke [Firebase Console](https://console.firebase.google.com/).
+2. Pilih proyek Anda.
+3. Navigasi ke **Authentication** > **Sign-in method**.
+4. Klik **GitHub** dan aktifkan metode sign-in.
+5. Masukkan **Client ID** dan **Client Secret** dari aplikasi GitHub Anda.
+6. Simpan perubahan.
 
-## Breaking the Myth: Your Degree Is Not Your Destiny
+> **Catatan:** Untuk mendapatkan Client ID dan Client Secret, Anda perlu mendaftarkan aplikasi Anda di [GitHub Developer Settings](https://github.com/settings/developers). Tambahkan URL pengalihan Firebase (`https://your-project-id.firebaseapp.com/__/auth/handler`) sebagai **Authorization callback URL**.
 
-I’ve personally met people who moved into tech from careers like teaching, marketing, and even finance. What they all had in common was a strong passion for learning and persistence.
+### 2. **Tambahkan Firebase SDK ke Proyek Anda**
 
-The technology industry values skills, creativity, and problem-solving far more than the piece of paper you hold.
+Instal Firebase SDK menggunakan npm:
 
-## Learning IT is More Accessible Than Ever
+```bash
+npm install firebase
+```
 
-Thanks to the internet, the barriers to learning programming and tech skills are lower than ever.
+Atau, jika Anda menggunakan CDN:
 
-You have access to:
+```html
+<script src="https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.4/firebase-auth.js"></script>
+```
 
-- Free and paid online courses
-- Community forums and developer groups
-- Documentation from every major framework and tool
-- AI assistants like ChatGPT to help you troubleshoot and understand concepts
+### 3. **Inisialisasi Firebase di Aplikasi Anda**
 
-What matters most is your willingness to put in consistent effort.
+```js
+// firebase.js
+import { initializeApp } from 'firebase/app';
+import { getAuth } from 'firebase/auth';
 
-## Tips for Non-IT Background Learners
+const firebaseConfig = {
+  apiKey: 'YOUR_API_KEY',
+  authDomain: 'your-project-id.firebaseapp.com',
+  projectId: 'your-project-id',
+  storageBucket: 'your-project-id.appspot.com',
+  messagingSenderId: 'YOUR_MESSAGING_SENDER_ID',
+  appId: 'YOUR_APP_ID'
+};
 
-- **Start small:** Begin with basics like HTML, CSS, or Python.
-- **Build projects:** Even simple ones, to apply what you learn.
-- **Join communities:** Participate in forums or coding groups to stay motivated.
-- **Be patient:** Learning tech takes time, and mistakes are part of the journey.
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
-## Final Thoughts
+export { auth };
+```
 
-Don’t let your background hold you back. The IT field is vast and open to all kinds of talent.
+### 4. **Implementasikan Fungsi Sign-In dengan GitHub**
 
-If you have curiosity and dedication, you have what it takes to succeed. So take the first step today—you might surprise yourself!
+```js
+import { GithubAuthProvider, signInWithPopup } from 'firebase/auth';
+import { auth } from './firebase';
+
+const provider = new GithubAuthProvider();
+
+function signInWithGitHub() {
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      const user = result.user;
+      console.log('User Info:', user);
+    })
+    .catch((error) => {
+      console.error('Error during sign-in:', error.message);
+    });
+}
+```
+
+### 5. **Tambahkan Tombol Sign-In di Antarmuka Pengguna**
+
+```html
+<button onclick="signInWithGitHub()">Sign in with GitHub</button>
+```
+
+### 6. **Tambahkan Domain ke Firebase Authorized Domains**
+
+1. Buka **Authentication** > **Settings** di Firebase Console.
+2. Tambahkan domain Anda (misalnya `your-app.vercel.app`) ke daftar **Authorized domains**.
+
+---
+
+Dengan langkah-langkah ini, Anda telah berhasil mengaktifkan GitHub Authentication menggunakan Firebase. Langkah selanjutnya bisa melibatkan pengamanan API, integrasi database, atau tampilan pengguna pasca-login.
