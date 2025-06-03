@@ -1,8 +1,36 @@
-import { motion, TargetAndTransition, Transition } from 'framer-motion'; 
-import { setTransition } from '@lib/transition'; 
-import { SEO } from '@components/common/seo'; 
-import { Accent } from '@components/ui/accent'; 
-import { CustomLink } from '@components/link/custom-link'; 
+import { motion, TargetAndTransition, Transition } from 'framer-motion'; // Import necessary types from framer-motion
+
+interface SetTransitionReturnType {
+  initial: TargetAndTransition; // Use framer-motion's TargetAndTransition type
+  animate: TargetAndTransition; // Use framer-motion's TargetAndTransition type
+  transition: Transition; // Use framer-motion's Transition type
+}
+
+function setTransition(options?: { delayIn?: number }): SetTransitionReturnType {
+  return {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.5, delay: options?.delayIn ?? 0 },
+  };
+}
+
+function SEO({ title, description }: { title: string; description: string }): JSX.Element {
+  return (
+    <>
+      <title>{title}</title>
+      <meta name="description" content={description} />
+    </>
+  );
+}
+
+function Accent({ children }: { children: React.ReactNode }): JSX.Element {
+  return <span className="text-accent-main">{children}</span>;
+}
+
+function CustomLink({ href, children, tabIndex, className }: { href: string; children: React.ReactNode; tabIndex?: number; className?: string }): JSX.Element {
+  return <a href={href} target="_blank" rel="noopener noreferrer" tabIndex={tabIndex} className={`text-blue-400 hover:underline ${className}`}>{children}</a>;
+}
+
 
 export default function Resume(): JSX.Element {
   return (
