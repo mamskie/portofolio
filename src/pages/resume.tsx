@@ -1,16 +1,17 @@
-import { motion, TargetAndTransition, Transition } from 'framer-motion'; // Import necessary types from framer-motion
+import { motion } from 'framer-motion'; 
+import type { TargetAndTransition, Transition } from 'framer-motion';
 
 interface SetTransitionReturnType {
-  initial: TargetAndTransition; // Use framer-motion's TargetAndTransition type
-  animate: TargetAndTransition; // Use framer-motion's TargetAndTransition type
-  transition: Transition; // Use framer-motion's Transition type
+  initial: TargetAndTransition; 
+  animate: TargetAndTransition; 
+  transition: Transition; 
 }
 
 function setTransition(options?: { delayIn?: number }): SetTransitionReturnType {
   return {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.5, delay: options?.delayIn ?? 0 },
+    transition: { duration: 0.5, delay: options?.delayIn ?? 0 }
   };
 }
 
@@ -18,17 +19,17 @@ function SEO({ title, description }: { title: string; description: string }): JS
   return (
     <>
       <title>{title}</title>
-      <meta name="description" content={description} />
+      <meta name='description' content={description} />
     </>
   );
 }
 
 function Accent({ children }: { children: React.ReactNode }): JSX.Element {
-  return <span className="text-accent-main">{children}</span>;
+  return <span className='text-accent-main'>{children}</span>;
 }
 
 function CustomLink({ href, children, tabIndex, className }: { href: string; children: React.ReactNode; tabIndex?: number; className?: string }): JSX.Element {
-  return <a href={href} target="_blank" rel="noopener noreferrer" tabIndex={tabIndex} className={`text-blue-400 hover:underline ${className}`}>{children}</a>;
+  return <a href={href} target='_blank' rel='noopener noreferrer' tabIndex={tabIndex} className={`text-blue-400 hover:underline ${className}`}>{children}</a>;
 }
 
 
@@ -50,7 +51,7 @@ export default function Resume(): JSX.Element {
           className='text-lg md:text-xl text-gray-300'
           {...setTransition({ delayIn: 0.1 })}
         >
-          +6285745319625 | khotib.bul@gmail.com | <CustomLink href="https://www.linkedin.com/in/mamskie/">https://www.linkedin.com/in/mamskie/</CustomLink>
+          +6285745319625 | khotib.bul@gmail.com | <CustomLink href='https://www.linkedin.com/in/mamskie/'>https://www.linkedin.com/in/mamskie/</CustomLink>
         </motion.p>
         <motion.p
           className='mt-4 text-gray-200'
