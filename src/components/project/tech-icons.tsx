@@ -13,7 +13,8 @@ import {
   SiJavascript,
   SiTypescript,
   SiTailwindcss,
-  SiGoogleanalytics
+  SiGoogleanalytics,
+  SiPrisma
 } from 'react-icons/si';
 import { Tooltip } from '../ui/tooltip';
 import type { IconType } from 'react-icons';
@@ -48,6 +49,10 @@ const techList: TechList = {
   react: {
     name: 'React',
     Icon: SiReact
+  },
+  prisma: {
+    name: 'Prisma',
+    Icon: SiPrisma
   },
   nextjs: {
     name: 'Next.js',
