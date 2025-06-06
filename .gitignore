@@ -134,3 +134,9 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Firebase config (local only)
+src/lib/firebase/config.ts
+
+# Local env file
+.env.development
