@@ -141,3 +141,4 @@ src/lib/firebase/config.ts
 # Local env file
 .env.development
 src/lib/firebase/config.ts
+/src/lib/firebase
