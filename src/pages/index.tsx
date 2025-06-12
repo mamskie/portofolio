@@ -58,9 +58,9 @@ export default function Home({
           className='mt-8 flex gap-4 text-sm md:text-base'
           {...setTransition({ delayIn: 0.3 })}
         >
-          <UnstyledLink className='custom-button clickable' href='/blog'>
+{/*           <UnstyledLink className='custom-button clickable' href='/blog'>
             Read my blog
-          </UnstyledLink>
+          </UnstyledLink> */}
           <UnstyledLink className='custom-button clickable' href='/about'>
             Learn more about me
           </UnstyledLink>
