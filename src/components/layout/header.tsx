@@ -52,5 +52,5 @@ const navLinks = [
   { name: 'Projects', href: '/projects' },
   { name: 'Guestbook', href: '/guestbook' },
   // { name: 'Contact', href: '/contact' },
-  { name: 'Blog', href: '/blog' }
+  // { name: 'Blog', href: '/blog' }
 ] as const;
