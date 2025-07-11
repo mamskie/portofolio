@@ -1,101 +1,104 @@
-# 🖥️ Portofolio Pribadi — mamskie
+# 🖥️ Personal Portfolio — mamskie
 
-Repository ini berisi source code dan konfigurasi untuk website portofolio pribadi **M. Khotibul Umam** (alias *Mamskie*), seorang **Information Systems Graduate** & self‑taught developer.
-
----
-
-## 💡 Tentang Saya
-
-Halo! Saya Khotibul Umam (*Mamskie*), lulusan Sistem Informasi yang antusias terhadap pengembangan web, manajemen IT, dan integrasi sistem. Saya senang belajar mandiri dan kreatif dalam menyelesaikan masalah.  
-Saya membangun portofolio ini untuk menampilkan hasil karya, kemampuan teknis, dan pemikiran saya di dunia IT/web development.
-
-🌐 Website: [mamskie.me](https://mamskie.me)
+This repository contains the source code and configurations for the personal portfolio website of **M. Khotibul Umam** (aka *mamskie*), an Information Systems graduate and self-taught developer.
 
 ---
 
-## 📱 Demo Langsung
+## 💡 About Me
 
-Coba portofolio interaktif ini secara langsung di:
-
-🔗 [https://mamskie.me](https://mamskie.me)
-
----
-
-## 🛠️ Teknologi yang Digunakan
-
-- **Next.js** + **TypeScript** — framework utama untuk pengembangan modern  
-- **Vite**, **Styled Components**, **Tailwind CSS**, **SCSS** — untuk UI, styling, dan bundling  
-- **Firebase** — digunakan dalam autentikasi & guestbook (jika aktif)  
-- **Linting & Format**: ESLint, Prettier, Commitlint, Husky, GitHub Actions
+Hi! I'm Khotibul Umam (*mamskie*), an Information Systems graduate passionate about web development, IT management, and system integration. I love learning independently and solving problems creatively.  
+This portfolio was built to showcase my work, technical skills, and personal projects. Check it out at [mamskie.me](https://mamskie.me/?utm_source=github-readme).
 
 ---
 
-## 🧩 Fitur Utama
+## 📱 Live Demo
 
-- ⚙️ **Terminal‑Style Portfolio**: tampilan seperti CLI yang unik  
-- 🌗 **Tema terang & gelap**  
-- 📱 **Responsif** di semua perangkat  
-- 📬 **Form kontak / guestbook** (jika aktif)  
-- 🚀 **Deployment otomatis** ke Firebase atau Vercel
+Experience the interactive terminal-style portfolio at:
+
+> [https://mamskie.me](https://mamskie.me)
 
 ---
 
-## 🚀 Cara Menjalankan di Lokal
+## 🛠️ Built With
 
-### Instal dependensi:
-```bash
-npm install
-```
-
-### Jalankan development server:
-```bash
-npm run dev
-```
-
-Buka `http://localhost:3000` di browser.
+- **Next.js** + **TypeScript** — modern web framework
+- **Vite**, **Styled Components**, **Tailwind CSS**, **SCSS** — for styling and bundling
+- **Firebase** — used for authentication & guestbook (optional)
+- Developer tools:  
+  `.eslintrc.json`, `.prettierrc.json`, Husky, commitlint, GitHub Actions
 
 ---
 
-## ✅ Kontribusi
+## 🧩 Key Features
 
-Silakan buka *issue* untuk menanyakan fitur atau melaporkan bug. Untuk kontribusi via *pull request*:
-
-- Gunakan format commit `feat:`, `fix:`, dsb. (Conventional Commits)
-- Jalankan `npm test` jika tersedia
-- Sertakan dokumentasi tambahan bila perlu
-
----
-
-## 📄 Lisensi
-
-Proyek ini dilisensikan di bawah **GPL‑3.0 License**.  
-Lihat file [LICENSE](LICENSE) untuk detail.
+- **Terminal‑Style Portfolio**: unique command-line interface theme  
+- **Light & Dark Mode Support**
+- **Responsive Design** for all screen sizes
+- **Guestbook / Contact Form** for interaction (optional)
+- **CI/CD Deployment** to Firebase Hosting or Vercel
 
 ---
 
-## 🔗 Tautan Penting
+## 🚀 Getting Started Locally
 
-- 🧠 Blog & Portfolio: [mamskie.me](https://mamskie.me)
-- 💼 LinkedIn: [linkedin.com/in/mamskie](https://linkedin.com/in/mamskie)
-- 💻 GitHub: [github.com/mamskie](https://github.com/mamskie)
-- 📧 Email: `khotib.bul@gmail.com`
-
----
-
-## 💭 Rencana Pengembangan
-
-- 🎞️ Animasi transisi antar perintah
-- 📨 Integrasi form kontak
-- 🎨 Tema tambahan dan kustomisasi
-- 📘 Penambahan dokumentasi dan testing unit
-
----
-
-> “Terminal Portfolio is a unique and engaging way to demonstrate your skills… a retro and modern fusion.”
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/mamskie/portofolio.git
+   cd portofolio
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Run the development server:
+   ```bash
+   npm run dev
+   ```
+4. Open `http://localhost:3000` in your browser
 
 ---
 
-## ❤ Terima Kasih
+## ✅ Contributing
 
-Terima kasih telah mengunjungi!  
-Jika kamu menemukan bug, ide, atau hanya ingin menyapa, jangan ragu buka issue atau hubungi saya.
+Feel free to open issues for bugs or feature requests. For pull requests, please:
+
+- Follow the Conventional Commits format
+- Run `npm test` to ensure everything passes
+- Include documentation/examples if adding new features
+
+---
+
+## 📄 License
+
+This project is licensed under the **GPL‑3.0 License**. See [LICENSE](LICENSE) for more information.
+
+---
+
+## 🔗 Related Links
+
+- Main website & blog: [mamskie.me](https://mamskie.me)
+- Projects:  
+  [Terminal Portfolio](https://mamskie.me/projects/terminal-portfolio)  
+  [Daily Ramadhan](https://mamskie.me/projects/daily-ramadhan)  
+  [URL Shortener](https://mamskie.me/projects/url-shortener)
+- Contact: `khotib.bul@gmail.com`
+
+---
+
+## 💭 Roadmap
+
+- Add animated command transitions
+- Integrate a fully functional contact form
+- Add more themes and customization options
+- Improve testing and documentation
+
+---
+
+> “Terminal Portfolio is a unique and engaging way to demonstrate your skills… a retro and modern fusion.”  
+> — [mamskie.me/projects/terminal-portfolio](https://www.mamskie.me/projects/terminal-portfolio)
+
+---
+
+### ❤ Thanks for Visiting
+
+Thanks for stopping by! If you found a bug, have a suggestion, or just want to say hi — feel free to open an issue or contact me directly.
