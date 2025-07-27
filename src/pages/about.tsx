@@ -45,7 +45,7 @@ export default function About(): JSX.Element {
             developing web-based archive management systems using
             <CustomLink href='https://laravel.com'> Laravel</CustomLink> during
             my internship at PT Presindo Central, where I also worked with
-            <CustomLink href='https://getbootstrap.com'> Bootstrap</CustomLink>
+            <CustomLink href='https://getbootstrap.com'> Bootstrap </CustomLink>
             and REST API integration.
           </p>
           <p>
