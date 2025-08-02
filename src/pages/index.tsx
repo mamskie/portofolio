@@ -84,7 +84,7 @@ export default function Home({
           ))}
         </motion.section>
       </section>
-      <motion.section className='grid gap-4' {...fadeInWhenVisible()}>
+{/*       <motion.section className='grid gap-4' {...fadeInWhenVisible()}>
         <h2 className='text-2xl font-bold md:text-4xl'>
           <Accent>Featured Posts</Accent>
         </h2>
@@ -102,10 +102,10 @@ export default function Home({
         >
           See more posts
         </UnstyledLink>
-      </motion.section>
+      </motion.section> */}
       <motion.section className='grid gap-4' {...fadeInWhenVisible()}>
         <h2 className='text-2xl font-bold md:text-4xl'>
-          <Accent>Featured Project</Accent>
+          <Accent>Personal Project</Accent>
         </h2>
         <p className='-mt-2 text-gray-600 dark:text-gray-300'>
           Check out my featured blog posts.
