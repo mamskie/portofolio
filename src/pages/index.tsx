@@ -5,7 +5,6 @@ import { initializeAllContents } from '@lib/api';
 import { getAllContents } from '@lib/mdx';
 import { setTransition, fadeInWhenVisible } from '@lib/transition';
 import { SEO } from '@components/common/seo';
-import { BlogCard } from '@components/blog/blog-card';
 import { ProjectCard } from '@components/project/project-card';
 import { UnstyledLink } from '@components/link/unstyled-link';
 import { Accent } from '@components/ui/accent';
@@ -14,7 +13,6 @@ import type { IconType } from 'react-icons';
 import type { Blog, Project } from '@lib/types/contents';
 
 export default function Home({
-  featuredBlog,
   featuredProjects
 }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   return (
@@ -58,7 +56,7 @@ export default function Home({
           className='mt-8 flex gap-4 text-sm md:text-base'
           {...setTransition({ delayIn: 0.3 })}
         >
-{/*           <UnstyledLink className='custom-button clickable' href='/blog'>
+          {/*           <UnstyledLink className='custom-button clickable' href='/blog'>
             Read my blog
           </UnstyledLink> */}
           <UnstyledLink className='custom-button clickable' href='/about'>
@@ -84,7 +82,7 @@ export default function Home({
           ))}
         </motion.section>
       </section>
-{/*       <motion.section className='grid gap-4' {...fadeInWhenVisible()}>
+      {/*       <motion.section className='grid gap-4' {...fadeInWhenVisible()}>
         <h2 className='text-2xl font-bold md:text-4xl'>
           <Accent>Featured Posts</Accent>
         </h2>

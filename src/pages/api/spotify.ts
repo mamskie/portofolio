@@ -35,7 +35,9 @@ export default async function handler(
         trackName,
         albumName,
         artistName,
-        albumImageUrl
+        albumImageUrl,
+        progressMs: track.progress_ms,
+        durationMs: track.item.duration_ms
       };
 
       return res.status(200).json(nowPlaying);

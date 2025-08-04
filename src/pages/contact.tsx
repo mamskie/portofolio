@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FiMail, FiSend } from 'react-icons/fi';
-import { SiGithub, SiLinkedin, SiTwitter, SiInstagram } from 'react-icons/si';
+import { SiGithub, SiLinkedin, SiX, SiInstagram } from 'react-icons/si';
 import { MdLocationOn } from 'react-icons/md';
 import { BsTelephone } from 'react-icons/bs';
 
@@ -110,7 +110,7 @@ export default function Contact(): JSX.Element {
           </a>
         </p>
         <p className='flex justify-center items-center gap-2'>
-          <SiTwitter />{' '}
+          <SiX />{' '}
           <a href='https://twitter.com/mam06_' target='_blank'>
             @mam06_
           </a>

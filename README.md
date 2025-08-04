@@ -1,12 +1,12 @@
 # 🖥️ Personal Portfolio — mamskie
 
-This repository contains the source code and configurations for the personal portfolio website of **M. Khotibul Umam** (aka *mamskie*), an Information Systems graduate and self-taught developer.
+This repository contains the source code and configurations for the personal portfolio website of **M. Khotibul Umam** (aka _mamskie_), an Information Systems graduate and self-taught developer.
 
 ---
 
 ## 💡 About Me
 
-Hi! I'm Khotibul Umam (*mamskie*), an Information Systems graduate passionate about web development, IT management, and system integration. I love learning independently and solving problems creatively.  
+Hi! I'm Khotibul Umam (_mamskie_), an Information Systems graduate passionate about web development, IT management, and system integration. I love learning independently and solving problems creatively.  
 This portfolio was built to showcase my work, technical skills, and personal projects. Check it out at [mamskie.me](https://mamskie.me/?utm_source=github-readme).
 
 ---
@@ -31,7 +31,7 @@ Experience the interactive terminal-style portfolio at:
 
 ## 🧩 Key Features
 
-- **Terminal‑Style Portfolio**: unique command-line interface theme  
+- **Terminal‑Style Portfolio**: unique command-line interface theme
 - **Light & Dark Mode Support**
 - **Responsive Design** for all screen sizes
 - **Guestbook / Contact Form** for interaction (optional)

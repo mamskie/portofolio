@@ -3,7 +3,7 @@ import {
   SiDiscord,
   SiGithub,
   SiLinkedin,
-  SiTwitter,
+  SiX,
   SiInstagram
 } from 'react-icons/si';
 import { Tooltip } from '@components/ui/tooltip';
@@ -94,11 +94,6 @@ const footerLinks: FooterLink[] = [
     href: '/statistics',
     tip: 'Blog & Projects statistics'
   }
-  // {
-  //   name: 'Subscribe',
-  //   href: '/subscribe',
-  //   tip: 'Get notified when I publish a new post'
-  // }
 ];
 
 type SocialLink = {
@@ -143,6 +138,6 @@ const socialLinks: SocialLink[] = [
     tip: 'Follow me on',
     name: 'Twitter',
     href: 'https://twitter.com/mam06_',
-    Icon: SiTwitter
+    Icon: SiX
   }
 ];

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access */
+
 import { getTags } from '@lib/helper';
 import type { Blog } from '@lib/types/contents';
 import type { StaticImageData } from 'next/image';

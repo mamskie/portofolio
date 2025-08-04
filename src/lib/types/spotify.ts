@@ -15,6 +15,8 @@ export type IsPlaying = {
   albumName: string;
   isPlaying: boolean;
   artistName: string;
+  progressMs: number;
+  durationMs: number;
   albumImageUrl: string | null;
 };
 
@@ -49,6 +51,7 @@ type Item = BaseItem & {
   popularity: number;
   preview_url: string;
   track_number: number;
+  duration_ms: number;
 };
 
 type Album = BaseItem & {

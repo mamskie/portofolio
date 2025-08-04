@@ -91,4 +91,24 @@
       }
     }
   }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+  .marquee {
+    display: inline-block;
+    white-space: nowrap;
+    padding-left: 100%;
+    animation: marquee 15s linear infinite;
+    will-change: transform;
+  }
+  .group:hover .marquee {
+    animation-play-state: paused;
+  }
 }
