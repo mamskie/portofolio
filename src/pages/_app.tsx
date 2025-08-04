@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { Analytics } from '@vercel/analytics/react';
 import { ThemeProvider } from 'next-themes';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import Script from 'next/script'; // ✅ Tambahkan ini
 import { Layout } from '@components/layout/layout';
 import { AppHead } from '@components/common/app-head';
 import type { AppProps } from 'next/app';
@@ -28,6 +29,25 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <>
       <AppHead />
+      <Script
+        strategy='afterInteractive'
+        src='https://www.googletagmanager.com/gtag/js?id=G-6M69SYXSE6'
+      />
+      <Script
+        id='google-analytics'
+        strategy='afterInteractive'
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-6M69SYXSE6', {
+              page_path: window.location.pathname,
+            });
+          `
+        }}
+      />
+
       <ThemeProvider attribute='class' defaultTheme='dark' enableSystem={false}>
         <Layout>
           <AnimatePresence mode='wait'>
@@ -35,6 +55,7 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
           </AnimatePresence>
         </Layout>
       </ThemeProvider>
+
       <Analytics />
       <SpeedInsights />
     </>

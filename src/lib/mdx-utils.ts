@@ -46,6 +46,10 @@ export async function getContentLastUpdatedDate(
     { headers: { Authorization: `Bearer ${GITHUB_TOKEN}` } }
   );
 
+  if (!response.ok) {
+    return null;
+  }
+
   const commits = (await response.json()) as FileCommitHistory[];
 
   const featCommits = commits.filter(({ commit: { message } }) =>

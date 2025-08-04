@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://mamskie.me
+
+# Sitemaps
+Sitemap: https://mamskie.me/sitemap.xml

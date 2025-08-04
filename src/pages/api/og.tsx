@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { ImageResponse } from '@vercel/og';
+import Image from 'next/image';
 import { PUBLIC_URL } from '@lib/env';
 import type { CSSProperties } from 'react';
 import type { PageConfig } from 'next';
@@ -39,11 +40,13 @@ export default async function handler(
                 </h2>
               </div>
               <div tw='flex items-center'>
-                <img
+                <Image
                   style={{ objectFit: 'cover' }}
                   tw='h-18 w-18 rounded-full'
-                  src={`${PUBLIC_URL}/assets/emilia.png`}
-                  alt='Emilia'
+                  src={`${PUBLIC_URL}/assets/logo.png`}
+                  width={72}
+                  height={72}
+                  alt='mamskie logo'
                 />
                 <div tw='ml-4 flex flex-col'>
                   {/* Originally semibold */}
@@ -52,19 +55,23 @@ export default async function handler(
                 </div>
               </div>
             </div>
-            <img
+            <Image
               style={{ objectFit: 'cover' }}
               tw='h-full w-[448px] rounded-md'
               src={image as string}
               alt={title as string}
+              width={448}
+              height={448}
             />
           </div>
         ) : (
           <div tw='flex w-full flex-col items-center justify-center'>
-            <img
+            <Image
               tw='h-24 w-24'
               src={`${PUBLIC_URL}/logo512.png`}
               alt="mamskie.me's logo"
+              width={512}
+              height={512}
             />
             <h2 style={gradientTitleStyles} tw='pb-1 text-6xl'>
               {isHomepage ? 'Mamskie' : title}

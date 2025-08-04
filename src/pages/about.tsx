@@ -32,7 +32,7 @@ const tabs: { label: string; value: TabKey }[] = [
 export default function About(): JSX.Element {
   const [activeTab, setActiveTab] = useState<TabKey>('education');
   return (
-    <main className='layout min-h-screen'>
+    <main className='overflow-x-hidden layout min-h-screen'>
       <SEO
         title='About'
         description='M. Khotibul Umam is a Fresh Graduate from Information System'

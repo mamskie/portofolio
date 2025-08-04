@@ -90,7 +90,7 @@ export function SpotifyCard(): JSX.Element {
                   <SiSpotify className='text-[#1ed760]' />
                   <div className='relative overflow-hidden w-full'>
                     <p
-                      className='marquee text-sm font-medium text-black dark:text-white whitespace-nowrap animate-marquee'
+                      className='marquee text-sm font-medium text-accent-main whitespace-nowrap animate-marquee'
                       title={trackName}
                     >
                       {trackName}
@@ -123,7 +123,7 @@ export function SpotifyCard(): JSX.Element {
                   </div>
                   <div className='h-2 w-full overflow-hidden rounded-full bg-gray-300 dark:bg-gray-700'>
                     <div
-                      className='h-full rounded-full bg-[#1ed760] transition-all duration-500 ease-in-out'
+                      className='h-full rounded-full bg-accent-main transition-all duration-500 ease-in-out'
                       style={{ width: `${progressPercent}%` }}
                     />
                   </div>
