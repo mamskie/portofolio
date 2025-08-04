@@ -13,6 +13,14 @@ This portfolio was built to showcase my work, technical skills, and personal pro
 
 ## 📱 Live Demo
 
+### ⚡ Performance
+
+| Tool                      | Score / Grade     | Key Metrics                                                  |
+|---------------------------|-------------------|--------------------------------------------------------------|
+| [GTmetrix](https://gtmetrix.com/reports/www.mamskie.me/hVbhNGww/) | **Grade A (100% Performance)** | LCP: 627ms • TBT: 0ms • CLS: 0 • Fully Loaded: 793ms |
+| [PageSpeed Insights – Desktop](https://pagespeed.web.dev/analysis/https-www-mamskie-me/9cgcoe7jus?form_factor=desktop) | **Score: 100**            | LCP: 0.6s • INP: 17ms • CLS: 0                                |
+
+
 Experience the interactive terminal-style portfolio at:
 
 > [https://mamskie.me](https://mamskie.me)
