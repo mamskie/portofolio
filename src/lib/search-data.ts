@@ -13,6 +13,12 @@ export const searchData: SearchItem[] = [
     href: '/about'
   },
   {
+    title: 'Design',
+    content:
+      'I have a keen eye for design, creating visually appealing and user-friendly interfaces.',
+    href: '/design'
+  },
+  {
     title: 'About - Internship at PT Presindo Central',
     content:
       'Developed web-based archive management system using Laravel, Bootstrap, and REST API integration.',
