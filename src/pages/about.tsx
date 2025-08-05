@@ -14,6 +14,7 @@ import {
   SiNodedotjs
 } from 'react-icons/si';
 import { useState } from 'react';
+import Image from 'next/image';
 import { setTransition } from '@lib/transition';
 import { SEO } from '@components/common/seo';
 import { Accent } from '@components/ui/accent';
@@ -32,7 +33,7 @@ const tabs: { label: string; value: TabKey }[] = [
 export default function About(): JSX.Element {
   const [activeTab, setActiveTab] = useState<TabKey>('education');
   return (
-    <main className='overflow-x-hidden layout min-h-screen'>
+    <main className='overflow-x-visible layout min-h-screen'>
       <SEO
         title='About'
         description='M. Khotibul Umam is a Fresh Graduate from Information System'
@@ -51,45 +52,75 @@ export default function About(): JSX.Element {
           <Accent>M. Khotibul Umam</Accent>
         </motion.h1>
       </section>
-      <section className='mt-4'>
-        <motion.article
-          className='prose dark:prose-invert'
-          {...setTransition({ delayIn: 0.2 })}
-        >
-          <p>
-            Hi, I&apos;m M. Khotibul Umam, an Information Systems graduate from
-            UIN Sunan Ampel Surabaya with a strong interest in web development,
-            system governance, and internal audit. My journey in tech began by
-            developing web-based archive management systems using
-            <CustomLink href='https://laravel.com'> Laravel</CustomLink> during
-            my internship at PT Presindo Central, where I also worked with
-            <CustomLink href='https://getbootstrap.com'> Bootstrap </CustomLink>
-            and REST API integration.
-          </p>
-          <p>
-            I continued growing professionally at PT Pelabuhan Indonesia
-            Regional 3, contributing to internal audits across branches using
-            ISO 9001, ISO 14001, ISPS Code, and SMK3 standards. I was also
-            involved in risk management, compliance monitoring, and building
-            Business Continuity Management (BCM) schemes for cybersecurity
-            scenarios. This hands-on experience helped sharpen my skills in data
-            analysis, reporting, and enterprise-level systems evaluation.
-          </p>
-          <p>
-            I enjoy working on data-driven projects, like when I created a
-            dashboard to visualize water quality changes in Banjarmasin using
-            <CustomLink href='https://powerbi.microsoft.com'>
-              {' '}
-              Power BI
-            </CustomLink>
-            . I&apos;m always eager to learn, build, and collaborate—this site
-            is where I showcase my work, share insights, and reflect on what
-            I&apos;ve learned. Feel free to reach out if you&apos;d like to
-            connect or collaborate!
-          </p>
-        </motion.article>
+      <section id='about' className='mt-12 px-4 sm:px-6 lg:px-8'>
+        <div className='grid grid-cols-1 md:grid-cols-3 gap-8 items-start max-w-6xl mx-auto'>
+          {/* LEFT SIDE: 2/3 TEXT */}
+          <motion.article
+            className='prose prose-neutral dark:prose-invert md:col-span-2'
+            {...setTransition({ delayIn: 0.2 })}
+          >
+            <p>
+              Hi, I&apos;m M. Khotibul Umam, an Information Systems graduate
+              from UIN Sunan Ampel Surabaya with a strong interest in web
+              development, system governance, and internal audit. My journey in
+              tech began by developing web-based archive management systems
+              using
+              <CustomLink href='https://laravel.com'> Laravel</CustomLink>{' '}
+              during my internship at PT Presindo Central, where I also worked
+              with
+              <CustomLink href='https://getbootstrap.com'>
+                {' '}
+                Bootstrap{' '}
+              </CustomLink>
+              and REST API integration.
+            </p>
+            <p>
+              I continued growing professionally at PT Pelabuhan Indonesia
+              Regional 3, contributing to internal audits across branches using
+              ISO 9001, ISO 14001, ISPS Code, and SMK3 standards. I was also
+              involved in risk management, compliance monitoring, and building
+              Business Continuity Management (BCM) schemes for cybersecurity
+              scenarios. This hands-on experience helped sharpen my skills in
+              data analysis, reporting, and enterprise-level systems evaluation.
+            </p>
+            <p>
+              I enjoy working on data-driven projects, like when I created a
+              dashboard to visualize water quality changes in Banjarmasin using
+              <CustomLink href='https://powerbi.microsoft.com'>
+                {' '}
+                Power BI
+              </CustomLink>
+              . I&apos;m always eager to learn, build, and collaborate—this site
+              is where I showcase my work, share insights, and reflect on what
+              I&apos;ve learned. Feel free to reach out if you&apos;d like to
+              connect or collaborate!
+            </p>
+          </motion.article>
+          <motion.div
+            className='w-full flex justify-center md:justify-end'
+            {...setTransition({ delayIn: 0.4 })}
+          >
+            <div className='relative group w-fit'>
+              <Image
+                src='/MAM.webp'
+                alt='Photo of me'
+                width={350}
+                height={250}
+                className='rounded-2xl shadow-lg object-cover'
+              />
+              <div className='absolute inset-0 bg-black opacity-100 rounded-2xl group-hover:opacity-0 transition duration-1000 mix-blend-multiply'></div>
+              <Image
+                src='/logo.webp'
+                alt='Logo Overlay'
+                width={250}
+                height={400}
+                className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-100 group-hover:opacity-0 transition duration-1000'
+              />
+            </div>
+          </motion.div>
+        </div>
       </section>
-      <section className='mt-12 grid gap-4'>
+      <section id='favorite-tech-stack' className='mt-12 grid gap-4'>
         <motion.h2
           className='text-xl font-bold md:text-3xl'
           {...setTransition({ delayIn: 0.3 })}
@@ -97,15 +128,12 @@ export default function About(): JSX.Element {
           <Accent>Favorite Tech Stack</Accent>
         </motion.h2>
         <motion.ul
-          className='translate flex gap-4 [&>li:first-child>div]:-translate-x-4
-                     [&>li:nth-child(2)>div]:-translate-x-16 [&>li:nth-child(3)>div]:-translate-x-28'
+          className='grid grid-cols-3 gap-16 sm:grid-cols-6
+             place-items-center'
           {...setTransition({ delayIn: 0.4 })}
         >
           {favoriteTechStack.map(({ tip, name, href, Icon }) => (
             <Tooltip
-              tooltipClassName='group-hover:!-translate-y-36 w-72 px-3 py-4 !-translate-y-28
-                                text-center !whitespace-normal 2xl:!-translate-x-1/2
-                                peer-focus-visible:!-translate-y-36'
               tag='li'
               key={name}
               tip={
@@ -117,6 +145,9 @@ export default function About(): JSX.Element {
                   {tip}
                 </>
               }
+              tooltipClassName='group-hover:!-translate-y-36 w-72 px-3 py-4 !-translate-y-28
+                        text-center !whitespace-normal 2xl:!-translate-x-1/2
+                        peer-focus-visible:!-translate-y-36'
             >
               <button className='smooth-tab peer'>
                 <Icon className='text-4xl transition-colors hover:text-accent-main' />
@@ -126,7 +157,7 @@ export default function About(): JSX.Element {
         </motion.ul>
       </section>
 
-      <section className='mt-16'>
+      <section id='more' className='mt-16'>
         <motion.h2
           className='text-xl font-bold md:text-3xl mb-6'
           {...setTransition({ delayIn: 0.5 })}

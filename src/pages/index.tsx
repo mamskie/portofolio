@@ -34,16 +34,18 @@ export default function Home({
         >
           I&apos;m Mamskie
         </motion.h1>
-        <motion.h1
-          className='mt-1 text-3xl font-bold transition-colors delay-200 md:text-5xl 2xl:text-6xl'
-          {...setTransition({ delayIn: 0.1 })}
+
+        <motion.h2
+          className='mt-1 text-2xl font-semibold transition-colors delay-200 md:text-4xl 2xl:text-5xl'
+          {...setTransition({ delayIn: 0.2 })}
         >
           <Accent>Information Systems Graduate</Accent>
-        </motion.h1>
+        </motion.h2>
+
         <motion.p
-          className='mt-4 max-w-4xl leading-relaxed text-gray-700 transition-colors delay-[400ms] dark:text-gray-200 
-                     md:mt-6 md:text-lg 2xl:text-xl'
-          {...setTransition({ delayIn: 0.2 })}
+          className='mt-4 max-w-4xl leading-relaxed text-gray-700 dark:text-gray-200 
+             md:mt-6 md:text-lg 2xl:text-xl'
+          {...setTransition({ delayIn: 0.3 })}
         >
           I&apos;m a self-taught developer, who&apos;s experienced in the field
           of Information Systems with expertise in IT management, risk
@@ -82,25 +84,6 @@ export default function Home({
           ))}
         </motion.section>
       </section>
-      {/*       <motion.section className='grid gap-4' {...fadeInWhenVisible()}>
-        <h2 className='text-2xl font-bold md:text-4xl'>
-          <Accent>Featured Posts</Accent>
-        </h2>
-        <p className='-mt-2 text-gray-600 dark:text-gray-300'>
-          Check out my featured blog posts.
-        </p>
-        <section className='card-layout'>
-          {featuredBlog.map((blog, index) => (
-            <BlogCard {...blog} key={index} />
-          ))}
-        </section>
-        <UnstyledLink
-          className='custom-button clickable justify-self-center font-bold text-gray-600 dark:text-gray-300'
-          href='/blog'
-        >
-          See more posts
-        </UnstyledLink>
-      </motion.section> */}
       <motion.section className='grid gap-4' {...fadeInWhenVisible()}>
         <h2 className='text-2xl font-bold md:text-4xl'>
           <Accent>Personal Project</Accent>
@@ -154,7 +137,7 @@ type SocialLink = {
 const socialLink: SocialLink[] = [
   {
     name: 'Resume',
-    href: 'https://drive.google.com/file/d/11PhK3wFXdfcIhpOPi9QDkgbflwFazfPb/view?usp=sharing',
+    href: 'https://drive.google.com/file/d/1w6UuAL2H6gkoXLa8hcuc600VfT9Uoslm/view?usp=sharing',
     Icon: HiDocumentText
   },
   {

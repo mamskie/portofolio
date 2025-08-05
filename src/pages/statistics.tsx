@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
 import { formatNumber } from '@lib/format';
 import { setTransition } from '@lib/transition';
-import { getAllContentsData, getAllContentsStatistics } from '@lib/api';
+// import { getAllContentsData, getAllContentsStatistics } from '@lib/api';
+import { getContentData, getContentStatistics } from '@lib/api';
 import { SEO } from '@components/common/seo';
 import { Accent } from '@components/ui/accent';
 import { Table } from '@components/statistics/table';
@@ -26,7 +27,7 @@ export default function Statistics({
           className='text-gray-600 dark:text-gray-300'
           {...setTransition({ delayIn: 0.1 })}
         >
-          A statistics from blog and projects.
+          A statistics from my projects.
         </motion.p>
       </section>
       <motion.section
@@ -80,8 +81,10 @@ type StatisticsProps = {
 export async function getStaticProps(): Promise<
   GetStaticPropsResult<StatisticsProps>
 > {
-  const contentsData = await getAllContentsData();
-  const contentsStatistics = await getAllContentsStatistics();
+  // const contentsData = await getAllContentsData();
+  // const contentsStatistics = await getAllContentsStatistics();
+  const contentsData = [await getContentData('projects')];
+  const contentsStatistics = [await getContentStatistics('projects')];
 
   return {
     props: {

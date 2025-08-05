@@ -3,14 +3,16 @@ import { useRef } from 'react';
 import { useRouter } from 'next/router';
 import { useInView } from 'framer-motion';
 import { clsx } from 'clsx';
+// import { searchData } from '@lib/search-data';
 import { ThemeSwitch } from '@components/common/theme-switch';
+import SearchBar from '@components/common/SearchBar';
+// import type { SearchItem } from '@lib/search-data';
 
 export function Header(): JSX.Element {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { margin: '40px 0px 0px', amount: 'all' });
 
   const { pathname } = useRouter();
-
   const baseRoute = '/' + pathname.split('/')[1];
 
   return (
@@ -24,21 +26,29 @@ export function Header(): JSX.Element {
       >
         <div className='h-2 bg-gradient-to-r from-accent-start to-accent-end' />
         <div className='layout flex items-center justify-between py-4'>
-          <nav className='flex gap-4 font-medium'>
-            {navLinks.map(({ name, href }) => (
-              <Link
-                className={clsx(
-                  'smooth-tab text-xs hover:text-accent-main hover:transition-colors md:text-base',
-                  baseRoute === href && 'gradient-title !text-transparent'
-                )}
-                href={href}
-                key={name}
-              >
-                {name}
-              </Link>
-            ))}
-          </nav>
-          <ThemeSwitch />
+          {/* Kiri: nav links */}
+          <div className='flex items-center gap-4'>
+            <nav className='flex gap-4 font-medium'>
+              {navLinks.map(({ name, href }) => (
+                <Link
+                  key={name}
+                  href={href}
+                  className={clsx(
+                    'smooth-tab text-xs hover:text-accent-main hover:transition-colors md:text-base',
+                    baseRoute === href && 'gradient-title !text-transparent'
+                  )}
+                >
+                  {name}
+                </Link>
+              ))}
+            </nav>
+          </div>
+
+          {/* Kanan: search + theme switch */}
+          <div className='ml-auto flex items-center gap-4'>
+            <SearchBar />
+            <ThemeSwitch />
+          </div>
         </div>
       </header>
     </>
@@ -50,5 +60,4 @@ const navLinks = [
   { name: 'About', href: '/about' },
   { name: 'Projects', href: '/projects' },
   { name: 'Guestbook', href: '/guestbook' }
-  // { name: 'Blog', href: '/blog' }
 ] as const;
