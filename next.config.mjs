@@ -56,6 +56,7 @@ export default withMDX({
   reactStrictMode: true,
   swcMinify: true,
   images: {
+    formats: ['image/avif', 'image/webp'],
     domains: [
       'avatars.githubusercontent.com',
       'i.scdn.co',

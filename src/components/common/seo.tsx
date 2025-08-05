@@ -96,6 +96,44 @@ export function SEO({
       ) : (
         <meta property='og:type' content='website' />
       )}
+      <script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': article ? 'Article' : 'WebSite',
+            ...(article
+              ? {
+                  mainEntityOfPage: {
+                    '@type': 'WebPage',
+                    '@id': `${PUBLIC_URL}${asPath}`
+                  },
+                  headline: title,
+                  description: description,
+                  image: `${PUBLIC_URL}${banner?.src ?? '/default-og.png'}`, // fallback image
+                  author: {
+                    '@type': 'Person',
+                    name: 'M. Khotibul Umam'
+                  },
+                  publisher: {
+                    '@type': 'Organization',
+                    name: 'mamskie.me',
+                    logo: {
+                      '@type': 'ImageObject',
+                      url: `${PUBLIC_URL}/favicon/android-chrome-512x512.png`
+                    }
+                  },
+                  datePublished: publishedAt,
+                  dateModified: lastUpdatedAt ?? publishedAt
+                }
+              : {
+                  name: 'mamskie.me',
+                  url: PUBLIC_URL,
+                  description: description
+                })
+          })
+        }}
+      />
     </Head>
   );
 }

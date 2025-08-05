@@ -1,11 +1,16 @@
 import Head from 'next/head';
 import { Inter } from 'next/font/google';
+import { useRouter } from 'next/router';
 
 const inter = Inter({
   subsets: ['latin']
 });
 
 export function AppHead(): JSX.Element {
+  const router = useRouter();
+  const PUBLIC_URL = 'https://www.mamskie.me';
+  const ogUrl = `${PUBLIC_URL}${router.asPath === '/' ? '' : router.asPath}`;
+
   return (
     <>
       <Head>
@@ -16,6 +21,7 @@ export function AppHead(): JSX.Element {
         />
         <link rel='icon' href='/favicon.ico' />
         <link rel='manifest' href='/site.webmanifest' key='site-manifest' />
+        <link rel='canonical' href={ogUrl} />
       </Head>
       <style jsx global>
         {`

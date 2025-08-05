@@ -134,20 +134,26 @@ export default function About(): JSX.Element {
           <Accent>More About Me</Accent>
         </motion.h2>
 
-        <div className='flex flex-col items-start gap-6'>
-          <div className='flex flex-wrap gap-2'>
+        <div className='w-full md:flex md:gap-6'>
+          <div className='md:w-1/4'>
             {tabs.map((tab) => (
-              <button
-                key={tab.value}
-                onClick={() => setActiveTab(tab.value)}
-                className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-all ${
-                  activeTab === tab.value
-                    ? 'border-accent-main bg-accent-main/10 text-accent-main'
-                    : 'border-border bg-transparent text-foreground hover:bg-accent-main/5'
-                }`}
-              >
-                {tab.label}
-              </button>
+              <div key={tab.value}>
+                <button
+                  onClick={() => setActiveTab(tab.value)}
+                  className={`w-full text-left py-3 px-4 border-r transition ${
+                    activeTab === tab.value
+                      ? 'bg-accent-main/10 text-accent-main font-bold border-accent-main border-r-4'
+                      : 'text-muted-foreground hover:bg-muted/10'
+                  }`}
+                >
+                  {tab.label}
+                </button>
+                {activeTab === tab.value && (
+                  <div className='block md:hidden px-4 py-2'>
+                    {/* Optional: tab content preview */}
+                  </div>
+                )}
+              </div>
             ))}
           </div>
           <div className='w-full'>
