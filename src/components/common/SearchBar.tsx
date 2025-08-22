@@ -60,7 +60,7 @@ export default function SearchBar(): JSX.Element {
 
       {isFocused && query.trim() !== '' && (
         <div className='absolute z-10 mt-2 w-full rounded-md border bg-white p-2 shadow-md dark:bg-black'>
-          {results.length > 0 ? (
+          {/* {results.length > 0 ? (
             results.map((item, index) => (
               <a
                 key={item.title}
@@ -73,6 +73,31 @@ export default function SearchBar(): JSX.Element {
               >
                 {item.title}
               </a>
+            ))
+          ) : (
+            <a
+              href={`https://www.google.com/search?q=${encodeURIComponent(query)}`}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='block rounded text-center px-2 py-1 text-sm text-accent-main hover:underline'
+            >
+              Result not found.
+              <br /> Search on Google →
+            </a>
+          )} */}
+          {results.length > 0 ? (
+            results.map((item, index) => (
+              <div
+                key={item.title}
+                onClick={() => void router.push(item.href)}
+                className={`block cursor-pointer rounded px-2 py-1 text-sm transition-colors ${
+                  highlightIndex === index
+                    ? 'bg-accent-main'
+                    : 'hover:bg-accent-main'
+                }`}
+              >
+                {item.title}
+              </div>
             ))
           ) : (
             <a

@@ -64,25 +64,6 @@ export const searchData: SearchItem[] = [
       'Built Laravel-based archive management system, integrated REST APIs, assisted in training and testing.',
     href: '/about#more'
   },
-
-  // ===================== PROJECTS =====================
-  //   {
-  //     title: 'Projects - Web-based Archive Management System',
-  //     content: 'Built during internship using Laravel + Bootstrap and REST API.',
-  //     href: '/projects'
-  //   },
-  //   {
-  //     title: 'Projects - Water Quality Dashboard (Power BI)',
-  //     content:
-  //       'Visualized water quality changes in Banjarmasin using Power BI for reporting and analytics.',
-  //     href: '/projects'
-  //   },
-  //   {
-  //     title: 'Projects - Car Paint Shop Management System',
-  //     content:
-  //       'Laravel-based system for inventory and customer management in car paint shop.',
-  //     href: '/projects'
-  //   },
   {
     title: 'Projects - Daily Ramadhan',
     content:
@@ -146,7 +127,7 @@ export const searchData: SearchItem[] = [
     title: 'Resume',
     content:
       'Download my resume to learn more about my professional background.',
-    href: 'https://drive.google.com/file/d/1w6UuAL2H6gkoXLa8hcuc600VfT9Uoslm/view?usp=sharing'
+    href: 'https://drive.google.com/file/d/1YBmCQkH2yQM0tcQM3-NQwKhg6XtkMnNd/view?usp=sharing'
   },
   {
     title: 'Guestbook',
