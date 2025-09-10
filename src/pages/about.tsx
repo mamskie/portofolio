@@ -423,6 +423,16 @@ export default function About(): JSX.Element {
                         2023
                       </li>
                     </ul>
+                    <div className='mt-4'>
+                      <a
+                        href='https://showcase.mamskie.me/'
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='text-blue-500 hover:underline'
+                      >
+                        Credential Showcase
+                      </a>
+                    </div>
                   </motion.div>
                 )}
               </div>
