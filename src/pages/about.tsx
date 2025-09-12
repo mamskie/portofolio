@@ -424,14 +424,10 @@ export default function About(): JSX.Element {
                       </li>
                     </ul>
                     <div className='mt-4'>
-                      <a
-                        href='https://showcase.mamskie.me/'
-                        target='_blank'
-                        rel='noopener noreferrer'
-                        className='text-accent-main hover:underline'
-                      >
-                        Credential Showcase
-                      </a>
+                      <CustomLink href='https://showcase.mamskie.me/'>
+                        {' '}
+                        Credential Showcase &gt;&gt;&gt;&gt;&gt;{' '}
+                      </CustomLink>
                     </div>
                   </motion.div>
                 )}
