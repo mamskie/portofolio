@@ -428,8 +428,9 @@ export default function About(): JSX.Element {
                         href='https://showcase.mamskie.me/'
                         target='_blank'
                         rel='noopener noreferrer'
+                        className='text-accent-main hover:underline'
                       >
-                        <Accent>Credential Showcase<Accent>
+                        Credential Showcase
                       </a>
                     </div>
                   </motion.div>

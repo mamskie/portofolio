@@ -84,10 +84,6 @@ This project is licensed under the **GPL‑3.0 License**. See [LICENSE](LICENSE)
 ## 🔗 Related Links
 
 - Main website & blog: [mamskie.me](https://mamskie.me)
-- Projects:  
-  [Terminal Portfolio](https://mamskie.me/projects/terminal-portfolio)  
-  [Daily Ramadhan](https://mamskie.me/projects/daily-ramadhan)  
-  [URL Shortener](https://mamskie.me/projects/url-shortener)
 - Contact: `khotib.bul@gmail.com`
 
 ---

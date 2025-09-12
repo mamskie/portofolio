@@ -87,6 +87,12 @@ export const searchData: SearchItem[] = [
       'Modern URL shortener built with Next.js and Prisma, featuring QR code, custom slug, and sleek UI.',
     href: '/projects/url-shortener'
   },
+  {
+    title: 'Showcase - Credential Showcase',
+    content:
+      'A web app to showcase credentials with a clean, responsive design and easy navigation.',
+    href: '/projects/showcase'
+  },
 
   // ===================== TRAINING =====================
   {

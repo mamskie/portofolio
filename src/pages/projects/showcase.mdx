@@ -1,0 +1,87 @@
+import Banner from '/public/assets/projects/showcase/banner.png';
+import { ContentLayout } from '@components/layout/content-layout';
+import { getContentSlug } from '@lib/mdx';
+
+export const meta = {
+  title: 'Showcase',
+  publishedAt: '2025-09-12',
+  banner: Banner,
+  description:
+    'Showcase is an interactive presentation-style portfolio powered by Impress.js. It provides a smooth slide-based navigation to present certificates, trainings, and projects in a unique way.',
+  tags: 'typescript,react,tailwindcss',
+  category: 'Personal Project',
+  github: 'https://github.com/mamskie/showcase',
+  link: 'https://showcase.mamskie.me/'
+};
+
+export const getStaticProps = getContentSlug('projects', 'showcase');
+
+export default ({ children }) => (
+  <ContentLayout meta={meta}>{children}</ContentLayout>
+);
+
+{/* content start */}
+
+## Overview
+
+**Showcase** is a slide-based interactive portfolio built with **React + Impress.js**.  
+The app is designed to present certifications, trainings, and projects with a **smooth 3D navigation experience**.
+
+<div className='flex flex-wrap gap-2'>
+  <img
+    src='https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB'
+    alt='React'
+  />
+  <img
+    src='https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white'
+    alt='TypeScript'
+  />
+  <img
+    src='https://img.shields.io/badge/TailwindCSS-38B2AC?style=for-the-badge&logo=tailwindcss&logoColor=white'
+    alt='TailwindCSS'
+  />
+  <img
+    src='https://img.shields.io/badge/Impress.js-000000?style=for-the-badge&logo=javascript&logoColor=yellow'
+    alt='Impress.js'
+  />
+</div>
+
+## The Tech Stack
+
+This project was built using:
+
+- **React + TypeScript** for the core application
+- **Impress.js** for 3D slide transitions
+- **TailwindCSS** for utility-first styling
+- **Custom Toolbar + MiniMap** for navigation controls
+
+## Features
+
+- 🎞️ **3D Slide Navigation** powered by Impress.js
+- ⚡ **Autoplay Mode** with pause/resume toggle
+- 🗺️ **MiniMap View** to quickly jump between slides
+- 🌓 **Light & Dark Themes** with persistent setting
+- 📑 **Showcase Certificates & Projects** in an interactive layout
+
+## Implementation Highlights
+
+- Integrated **Impress.js** with React for dynamic slides.
+- Added **Toolbar controls** for navigation, overview, theme switch, and autoplay.
+- Implemented **Autoplay on load** with notification.
+- Created a flexible **slideIds.ts + projectsData.ts** for easy content management.
+
+## Future Enhancements
+
+- 🖼️ Add support for **image galleries** inside slides
+- 🔄 Smooth **slide transition animations**
+- 📱 Full **mobile optimization**
+
+## Conclusion
+
+**Showcase** provides an engaging way to present professional achievements.  
+It’s more than a portfolio — it’s a presentation tool that highlights growth and skills interactively.
+
+🔗 Try it here: [Live App](https://mamskie.me/showcase)  
+🛠️ View the code on [GitHub](https://github.com/mamskie/showcase)
+
+Thanks for checking out this project!
