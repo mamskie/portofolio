@@ -83,7 +83,7 @@ This project is licensed under the **GPL‑3.0 License**. See [LICENSE](LICENSE)
 
 ## 🔗 Related Links
 
-- Main website & blog: [mamskie.me](https://mamskie.me)
+- Main website : [mamskie.me](https://mamskie.me)
 - Contact: `khotib.bul@gmail.com`
 
 ---
