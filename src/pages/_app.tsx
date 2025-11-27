@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+
 import '@styles/globals.scss';
 import { configure, start, done } from 'nprogress';
 import { AnimatePresence } from 'framer-motion';
@@ -7,28 +9,9 @@ import { Analytics } from '@vercel/analytics/react';
 import { ThemeProvider } from 'next-themes';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import Script from 'next/script';
-import { getWebInstrumentations, initializeFaro } from '@grafana/faro-web-sdk';
-import { TracingInstrumentation } from '@grafana/faro-web-tracing';
 import { Layout } from '@components/layout/layout';
 import { AppHead } from '@components/common/app-head';
 import type { AppProps } from 'next/app';
-
-initializeFaro({
-  url: 'https://faro-collector-prod-ap-southeast-2.grafana.net/collect/63e91fd7f5055b525a85743178edb71a',
-  app: {
-    name: 'mamskie',
-    version: '1.0.0',
-    environment: 'production'
-  },
-
-  instrumentations: [
-    // Mandatory, omits default instrumentations otherwise.
-    ...getWebInstrumentations(),
-
-    // Tracing package to get end-to-end visibility for HTTP requests.
-    new TracingInstrumentation()
-  ]
-});
 
 configure({ showSpinner: false });
 
@@ -43,6 +26,30 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
   const { pathname } = useRouter();
 
   useEffect(() => void popAudio?.play().catch(() => void 0), [pathname]);
+
+  useEffect(() => {
+    void (async () => {
+      const { initializeFaro, getWebInstrumentations } = await import(
+        '@grafana/faro-web-sdk'
+      );
+      const { TracingInstrumentation } = await import(
+        '@grafana/faro-web-tracing'
+      );
+
+      initializeFaro({
+        url: 'https://faro-collector-prod-ap-southeast-2.grafana.net/collect/63e91fd7f5055b525a85743178edb71a',
+        app: {
+          name: 'mamskie',
+          version: '1.0.0',
+          environment: 'production'
+        },
+        instrumentations: [
+          ...getWebInstrumentations(),
+          new TracingInstrumentation()
+        ]
+      });
+    })();
+  }, []);
 
   return (
     <>
