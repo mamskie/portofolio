@@ -131,7 +131,7 @@ const socialLinks: SocialLink[] = [
   {
     tip: 'Follow me on',
     name: 'Instagram',
-    href: 'https://instagram.com/khtblmam__',
+    href: 'https://instagram.com/mamskie.me',
     Icon: SiInstagram
   },
   {
