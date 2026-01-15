@@ -4,6 +4,8 @@ This repository contains the source code and configurations for the personal por
 
 ---
 
+[![🚀 Deployment](https://github.com/mamskie/portofolio/actions/workflows/deployment.yaml/badge.svg)](https://github.com/mamskie/portofolio/actions/workflows/deployment.yaml)
+
 ## 💡 About Me
 
 Hi! I'm Khotibul Umam (_mamskie_), an Information Systems graduate passionate about web development, IT management, and system integration. I love learning independently and solving problems creatively.  
