@@ -27,29 +27,29 @@ export default function App({ Component, pageProps }: AppProps): JSX.Element {
 
   useEffect(() => void popAudio?.play().catch(() => void 0), [pathname]);
 
-  useEffect(() => {
-    void (async () => {
-      const { initializeFaro, getWebInstrumentations } = await import(
-        '@grafana/faro-web-sdk'
-      );
-      const { TracingInstrumentation } = await import(
-        '@grafana/faro-web-tracing'
-      );
+  // useEffect(() => {
+  //   void (async () => {
+  //     const { initializeFaro, getWebInstrumentations } = await import(
+  //       '@grafana/faro-web-sdk'
+  //     );
+  //     const { TracingInstrumentation } = await import(
+  //       '@grafana/faro-web-tracing'
+  //     );
 
-      initializeFaro({
-        url: 'https://faro-collector-prod-ap-southeast-2.grafana.net/collect/63e91fd7f5055b525a85743178edb71a',
-        app: {
-          name: 'mamskie',
-          version: '1.0.0',
-          environment: 'production'
-        },
-        instrumentations: [
-          ...getWebInstrumentations(),
-          new TracingInstrumentation()
-        ]
-      });
-    })();
-  }, []);
+  //     initializeFaro({
+  //       url: 'https://faro-collector-prod-ap-southeast-2.grafana.net/collect/63e91fd7f5055b525a85743178edb71a',
+  //       app: {
+  //         name: 'mamskie',
+  //         version: '1.0.0',
+  //         environment: 'production'
+  //       },
+  //       instrumentations: [
+  //         ...getWebInstrumentations(),
+  //         new TracingInstrumentation()
+  //       ]
+  //     });
+  //   })();
+  // }, []);
 
   return (
     <>
