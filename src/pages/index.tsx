@@ -137,7 +137,7 @@ type SocialLink = {
 const socialLink: SocialLink[] = [
   {
     name: 'Resume',
-    href: 'https://drive.google.com/file/d/1YBmCQkH2yQM0tcQM3-NQwKhg6XtkMnNd/view?usp=sharing',
+    href: 'https://drive.google.com/file/d/19-IClRZnnwRl9jRfuaRmS5Ebpqp1Xj_U/view?usp=sharing',
     Icon: HiDocumentText
   },
   {
