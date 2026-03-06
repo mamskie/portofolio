@@ -76,7 +76,7 @@ export function SEO({
       <meta property='og:image:width' content='1200' />
       <meta property='og:image:height' content='600' />
       <meta property='og:locale' content='en_US' />
-      <meta property='og:site_name' content='mamskie.me' />
+      <meta property='og:site_name' content='mamskie.dev' />
       <meta property='og:determiner' content='auto' />
       {article ? (
         <>
@@ -117,7 +117,7 @@ export function SEO({
                   },
                   publisher: {
                     '@type': 'Organization',
-                    name: 'mamskie.me',
+                    name: 'mamskie.dev',
                     logo: {
                       '@type': 'ImageObject',
                       url: `${PUBLIC_URL}/favicon/android-chrome-512x512.png`
@@ -127,7 +127,7 @@ export function SEO({
                   dateModified: lastUpdatedAt ?? publishedAt
                 }
               : {
-                  name: 'mamskie.me',
+                  name: 'mamskie.dev',
                   url: PUBLIC_URL,
                   description: description
                 })

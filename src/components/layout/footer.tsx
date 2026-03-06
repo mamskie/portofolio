@@ -87,7 +87,7 @@ const footerLinks: FooterLink[] = [
   {
     name: 'Design',
     href: '/design',
-    tip: 'mamskie.me color palette'
+    tip: 'mamskie.dev color palette'
   },
   {
     name: 'Statistics',
@@ -131,7 +131,7 @@ const socialLinks: SocialLink[] = [
   {
     tip: 'Follow me on',
     name: 'Instagram',
-    href: 'https://instagram.com/mamskie.me',
+    href: 'https://instagram.com/mamskie.dev',
     Icon: SiInstagram
   },
   {

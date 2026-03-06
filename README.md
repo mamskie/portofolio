@@ -9,7 +9,7 @@ This repository contains the source code and configurations for the personal por
 ## 💡 About Me
 
 Hi! I'm Khotibul Umam (_mamskie_), an Information Systems graduate passionate about web development, IT management, and system integration. I love learning independently and solving problems creatively.  
-This portfolio was built to showcase my work, technical skills, and personal projects. Check it out at [mamskie.me](https://mamskie.me/?utm_source=github-readme).
+This portfolio was built to showcase my work, technical skills, and personal projects. Check it out at [mamskie.dev](https://mamskie.dev/?utm_source=github-readme).
 
 ---
 
@@ -19,12 +19,12 @@ This portfolio was built to showcase my work, technical skills, and personal pro
 
 | Tool                                                                                                                   | Score / Grade                  | Key Metrics                                          |
 | ---------------------------------------------------------------------------------------------------------------------- | ------------------------------ | ---------------------------------------------------- |
-| [GTmetrix](https://gtmetrix.com/reports/www.mamskie.me/hVbhNGww/)                                                      | **Grade A (100% Performance)** | LCP: 627ms • TBT: 0ms • CLS: 0 • Fully Loaded: 793ms |
+| [GTmetrix](https://gtmetrix.com/reports/www.mamskie.dev/hVbhNGww/)                                                      | **Grade A (100% Performance)** | LCP: 627ms • TBT: 0ms • CLS: 0 • Fully Loaded: 793ms |
 | [PageSpeed Insights – Desktop](https://pagespeed.web.dev/analysis/https-www-mamskie-me/9cgcoe7jus?form_factor=desktop) | **Score: 100**                 | LCP: 0.6s • INP: 17ms • CLS: 0                       |
 
 Experience the interactive terminal-style portfolio at:
 
-> [https://mamskie.me](https://mamskie.me)
+> [https://mamskie.dev](https://mamskie.dev)
 
 ---
 
@@ -85,7 +85,7 @@ This project is licensed under the **GPL‑3.0 License**. See [LICENSE](LICENSE)
 
 ## 🔗 Related Links
 
-- Main website : [mamskie.me](https://mamskie.me)
+- Main website : [mamskie.dev](https://mamskie.dev)
 - Contact: `khotib.bul@gmail.com`
 
 ---
@@ -100,7 +100,7 @@ This project is licensed under the **GPL‑3.0 License**. See [LICENSE](LICENSE)
 ---
 
 > “Terminal Portfolio is a unique and engaging way to demonstrate your skills… a retro and modern fusion.”  
-> — [mamskie.me/projects/terminal-portfolio](https://www.mamskie.me/projects/terminal-portfolio)
+> — [mamskie.dev/projects/terminal-portfolio](https://www.mamskie.dev/projects/terminal-portfolio)
 
 ---
 

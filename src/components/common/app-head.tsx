@@ -8,7 +8,7 @@ const inter = Inter({
 
 export function AppHead(): JSX.Element {
   const router = useRouter();
-  const PUBLIC_URL = 'https://www.mamskie.me';
+  const PUBLIC_URL = 'https://www.mamskie.dev';
   const ogUrl = `${PUBLIC_URL}${router.asPath === '/' ? '' : router.asPath}`;
 
   return (

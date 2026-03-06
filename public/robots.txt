@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://mamskie.me
+Host: https://mamskie.dev
 
 # Sitemaps
-Sitemap: https://mamskie.me/sitemap.xml
+Sitemap: https://mamskie.dev/sitemap.xml

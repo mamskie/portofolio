@@ -33,7 +33,7 @@ export default async function handler(
             <div tw='flex flex-col justify-between'>
               <div tw='flex flex-col'>
                 <p tw='-my-2 text-xl font-medium text-gray-400'>
-                  mamskie.me/{type}
+                  mamskie.dev/{type}
                 </p>
                 <h2 style={gradientTitleStyles} tw='max-w-xl text-4xl'>
                   {title}
@@ -69,7 +69,7 @@ export default async function handler(
             <Image
               tw='h-24 w-24'
               src={`${PUBLIC_URL}/logo512.png`}
-              alt="mamskie.me's logo"
+              alt="mamskie.dev's logo"
               width={512}
               height={512}
             />
@@ -78,7 +78,7 @@ export default async function handler(
             </h2>
             {/* Originally semibold */}
             {!isHomepage && (
-              <p tw='text-2xl font-medium text-gray-200'>mamskie.me</p>
+              <p tw='text-2xl font-medium text-gray-200'>mamskie.dev</p>
             )}
             <p tw='max-w-4xl text-center text-2xl text-gray-300'>
               {description}

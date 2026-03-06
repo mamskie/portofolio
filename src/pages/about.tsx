@@ -424,7 +424,7 @@ export default function About(): JSX.Element {
                       </li>
                     </ul>
                     <div className='mt-4'>
-                      <CustomLink href='https://showcase.mamskie.me/'>
+                      <CustomLink href='https://showcase.mamskie.dev/'>
                         {' '}
                         Credential Showcase &gt;&gt;&gt;&gt;&gt;{' '}
                       </CustomLink>
