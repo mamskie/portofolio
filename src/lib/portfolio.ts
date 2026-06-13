@@ -22,17 +22,17 @@ export async function getPortfolio(): Promise<Portfolio[]> {
 
 export async function createPortfolio(
   data: Omit<Portfolio, 'id'>
-) {
+): Promise<unknown> {
   return addDoc(portfolioCollection, data);
 }
 
 export async function updatePortfolio(
   id: string,
   data: Partial<Portfolio>
-) {
+): Promise<unknown> {
   return updateDoc(doc(portfolioCollection, id), data);
 }
 
-export async function deletePortfolio(id: string) {
+export async function deletePortfolio(id: string): Promise<unknown> {
   return deleteDoc(doc(portfolioCollection, id));
 }

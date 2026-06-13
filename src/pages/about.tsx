@@ -15,7 +15,6 @@ import {
 } from 'react-icons/si';
 import { getServerSession } from 'next-auth';
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
 import { setTransition } from '@lib/transition';
 import { getPortfolio } from '@lib/portfolio';
 import { SEO } from '@components/common/seo';
