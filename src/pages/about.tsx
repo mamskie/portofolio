@@ -13,14 +13,22 @@ import {
   SiPhp,
   SiNodedotjs
 } from 'react-icons/si';
-import { useState } from 'react';
+import { getServerSession } from 'next-auth';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { setTransition } from '@lib/transition';
+import { getPortfolio } from '@lib/portfolio';
 import { SEO } from '@components/common/seo';
 import { Accent } from '@components/ui/accent';
 import { Tooltip } from '@components/ui/tooltip';
+import { Button } from '@components/ui/button';
 import { CustomLink } from '@components/link/custom-link';
+import { PortfolioModal } from '@components/admin/portofolio-modal';
+import { authOptions } from './api/auth/[...nextauth]';
+import type { AuthOptions } from 'next-auth';
 import type { IconType } from 'react-icons';
+import type { Portfolio } from '@lib/types/portfolio';
+import type { CustomSession } from '@lib/types/api';
 
 type TabKey = 'education' | 'experience' | 'Project Experience' | 'training';
 
@@ -30,8 +38,84 @@ const tabs: { label: string; value: TabKey }[] = [
   { label: 'Project Experience', value: 'Project Experience' },
   { label: 'Trainings & Certifications', value: 'training' }
 ];
-export default function About(): JSX.Element {
+// export default function About(): JSX.Element {
+type AboutProps = {
+  portfolio: Portfolio[];
+  session: CustomSession | null;
+};
+
+export default function About({ portfolio, session }: AboutProps): JSX.Element {
   const [activeTab, setActiveTab] = useState<TabKey>('education');
+  const [showPortfolioModal, setShowPortfolioModal] = useState(false);
+  const [selectedPortfolio, setSelectedPortfolio] = useState<Portfolio | null>(
+    null
+  );
+  const [portfolioItems, setPortfolioItems] = useState<Portfolio[]>(portfolio);
+  const [isLoadingPortfolio, setIsLoadingPortfolio] = useState(false);
+
+  const activeType = activeTab === 'Project Experience' ? 'project' : activeTab;
+  const activeTypeLabel =
+    activeType === 'project'
+      ? 'Project'
+      : activeType === 'training'
+        ? 'Training'
+        : activeType === 'education'
+          ? 'Education'
+          : 'Experience';
+  const activeItems = portfolioItems.filter((item) => item.type === activeType);
+
+  useEffect(() => {
+    async function fetchPortfolioItems(): Promise<void> {
+      setIsLoadingPortfolio(true);
+
+      try {
+        const response = await fetch('/api/portfolio');
+
+        if (!response.ok) {
+          throw new Error(`Failed to fetch portfolio: ${response.status}`);
+        }
+
+        const data = (await response.json()) as Portfolio[];
+        setPortfolioItems(data);
+      } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error('Failed to load portfolio data', error);
+      } finally {
+        setIsLoadingPortfolio(false);
+      }
+    }
+
+    void fetchPortfolioItems();
+  }, []);
+
+  function handleEdit(portfolio: Portfolio): void {
+    setSelectedPortfolio(portfolio);
+    setShowPortfolioModal(true);
+  }
+
+  function handleAdd(): void {
+    setSelectedPortfolio(null);
+    setShowPortfolioModal(true);
+  }
+
+  async function handleDelete(id: string): Promise<void> {
+    const confirmed = window.confirm('Delete this experience?');
+
+    if (!confirmed) return;
+
+    const response = await fetch(`/api/portfolio/${id}`, {
+      method: 'DELETE',
+      credentials: 'same-origin'
+    });
+
+    if (!response.ok) {
+      const errorBody = await response.text();
+      alert(`Failed to delete (${response.status}): ${errorBody}`);
+      return;
+    }
+
+    window.location.reload();
+  }
   return (
     <main className='overflow-x-visible layout min-h-screen'>
       <SEO
@@ -61,39 +145,26 @@ export default function About(): JSX.Element {
           >
             <p>
               Hi, I&apos;m M. Khotibul Umam, an Information Systems graduate
-              from UIN Sunan Ampel Surabaya with a strong interest in web
-              development, system governance, and internal audit. My journey in
-              tech began by developing web-based archive management systems
-              using
-              <CustomLink href='https://laravel.com'> Laravel</CustomLink>{' '}
-              during my internship at PT Presindo Central, where I also worked
-              with
-              <CustomLink href='https://getbootstrap.com'>
-                {' '}
-                Bootstrap{' '}
-              </CustomLink>
-              and REST API integration.
+              with experience in IT Operations, Monitoring & Reporting, IT
+              Governance, Internal Audit, and Web Development. I have worked on
+              infrastructure monitoring, incident management, dashboard
+              reporting, compliance assessments, and business process
+              improvement initiatives.
             </p>
+
             <p>
-              I continued growing professionally at PT Pelabuhan Indonesia
-              Regional 3, contributing to internal audits across branches using
-              ISO 9001, ISO 14001, ISPS Code, and SMK3 standards. I was also
-              involved in risk management, compliance monitoring, and building
-              Business Continuity Management (BCM) schemes for cybersecurity
-              scenarios. This hands-on experience helped sharpen my skills in
-              data analysis, reporting, and enterprise-level systems evaluation.
+              I am passionate about Application Support, System Analysis, Data &
+              Reporting, GRC, and technology-driven problem solving. I enjoy
+              learning new technologies, analyzing complex problems, and
+              delivering solutions that improve operational efficiency and
+              business performance.
             </p>
+
             <p>
-              I enjoy working on data-driven projects, like when I created a
-              dashboard to visualize water quality changes in Banjarmasin using
-              <CustomLink href='https://powerbi.microsoft.com'>
-                {' '}
-                Power BI
-              </CustomLink>
-              . I&apos;m always eager to learn, build, and collaborate—this site
-              is where I showcase my work, share insights, and reflect on what
-              I&apos;ve learned. Feel free to reach out if you&apos;d like to
-              connect or collaborate!
+              This portfolio showcases my projects, experiences, certifications,
+              and continuous learning journey. I&apos;m always open to
+              connecting with professionals, exploring new opportunities, and
+              contributing to impactful technology initiatives.
             </p>
           </motion.article>
           <motion.div
@@ -101,7 +172,7 @@ export default function About(): JSX.Element {
             {...setTransition({ delayIn: 0.4 })}
           >
             <div className='relative group w-fit'>
-              <Image
+              {/* <Image
                 src='/MAM.webp'
                 alt='Photo of me'
                 width={350}
@@ -115,7 +186,7 @@ export default function About(): JSX.Element {
                 width={250}
                 height={400}
                 className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-100 group-hover:opacity-0 transition duration-1000'
-              />
+              /> */}
             </div>
           </motion.div>
         </div>
@@ -165,277 +236,215 @@ export default function About(): JSX.Element {
           <Accent>More About Me</Accent>
         </motion.h2>
 
-        <div className='w-full md:flex md:gap-6'>
-          <div className='md:w-1/4'>
+        <div className='w-full'>
+          <div className='flex flex-wrap gap-2 mb-6'>
             {tabs.map((tab) => (
-              <div key={tab.value}>
-                <button
-                  onClick={() => setActiveTab(tab.value)}
-                  className={`w-full text-left py-3 px-4 border-r transition ${
-                    activeTab === tab.value
-                      ? 'bg-accent-main/10 text-accent-main font-bold border-accent-main border-r-4'
-                      : 'text-muted-foreground hover:bg-muted/10'
-                  }`}
-                >
-                  {tab.label}
-                </button>
-                {activeTab === tab.value && (
-                  <div className='block md:hidden px-4 py-2'>
-                    {/* Optional: tab content preview */}
-                  </div>
-                )}
-              </div>
+              <button
+                key={tab.value}
+                onClick={() => setActiveTab(tab.value)}
+                className={`rounded-full py-2 px-4 border transition text-sm font-medium ${
+                  activeTab === tab.value
+                    ? 'bg-accent-main/10 text-accent-main border-accent-main'
+                    : 'border-transparent text-muted-foreground hover:bg-muted/10 hover:border-muted-200'
+                }`}
+              >
+                {tab.label}
+              </button>
             ))}
           </div>
           <div className='w-full'>
-            {activeTab === 'education' && (
-              <div>
-                {activeTab === 'education' && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className='space-y-4'
-                  >
-                    <div>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className='space-y-4'
+            >
+              {session?.user?.admin && (
+                <div className='mb-4 flex justify-end'>
+                  <Button onClick={handleAdd} className='custom-button'>
+                    + Add {activeTypeLabel}
+                  </Button>
+                </div>
+              )}
+
+              {isLoadingPortfolio ? (
+                <p>Loading portfolio data...</p>
+              ) : activeItems.length === 0 ? (
+                <p>No {activeTypeLabel.toLowerCase()} data found.</p>
+              ) : (
+                activeItems.map((item) => {
+                  const isCertification =
+                    /certified|certification|aws|google|azure|microsoft|comptia|cissp|ccna/i.test(
+                      item.title
+                    );
+                  const badgeLabel = isCertification
+                    ? 'Certification'
+                    : 'Training';
+
+                  return item.type === 'training' ? (
+                    <div
+                      key={item.id}
+                      className='rounded-lg border border-accent-main/20 bg-accent-main/5 p-4 space-y-2'
+                    >
+                      <div className='flex items-start justify-between gap-4'>
+                        <div className='flex-1'>
+                          <div className='flex items-center gap-2 mb-1'>
+                            <span className='inline-block rounded-full bg-accent-main/20 px-3 py-1 text-xs font-semibold text-accent-main'>
+                              {badgeLabel}
+                            </span>
+                          </div>
+                          <h3 className='text-lg font-semibold'>
+                            {item.title}
+                          </h3>
+                        </div>
+                        <p className='text-sm font-bold whitespace-nowrap'>
+                          {item.endDate}
+                        </p>
+                      </div>
+
+                      <p className='text-sm text-muted-foreground'>
+                        {item.companyUrl ? (
+                          <CustomLink href={item.companyUrl}>
+                            {item.role}
+                          </CustomLink>
+                        ) : (
+                          item.role
+                        )}
+                      </p>
+
+                      {session?.user?.admin && (
+                        <div className='flex gap-2 pt-2'>
+                          <Button
+                            className='custom-button text-xs'
+                            onClick={() => handleEdit(item)}
+                          >
+                            Edit
+                          </Button>
+
+                          <Button
+                            className='custom-button text-xs'
+                            onClick={() => handleDelete(item.id)}
+                          >
+                            Delete
+                          </Button>
+                        </div>
+                      )}
+                    </div>
+                  ) : item.type === 'project' ? (
+                    <div key={item.id} className='space-y-2'>
+                      <h3 className='text-lg font-semibold'>{item.title}</h3>
+
+                      <p className='font-medium'>
+                        {item.companyUrl ? (
+                          <CustomLink href={item.companyUrl}>
+                            {item.role}
+                          </CustomLink>
+                        ) : (
+                          item.role
+                        )}
+                      </p>
+
+                      <p className='text-sm text-gray-500'>
+                        {`${item.startDate} - ${item.endDate}`}
+                        {item.location ? ` · ${item.location}` : ''}
+                      </p>
+
+                      {session?.user?.admin && (
+                        <div className='flex gap-2 pt-2'>
+                          <Button
+                            className='custom-button text-sm'
+                            onClick={() => handleEdit(item)}
+                          >
+                            Edit
+                          </Button>
+
+                          <Button
+                            className='custom-button text-sm'
+                            onClick={() => handleDelete(item.id)}
+                          >
+                            Delete
+                          </Button>
+                        </div>
+                      )}
+
+                      {item.descriptions.length > 0 &&
+                        (item.descriptions.length === 1 ? (
+                          <p className='mt-2 text-base text-muted-foreground'>
+                            {item.descriptions[0]}
+                          </p>
+                        ) : (
+                          <ul className='mt-2 list-disc pl-5'>
+                            {item.descriptions.map((desc) => (
+                              <li key={desc}>{desc}</li>
+                            ))}
+                          </ul>
+                        ))}
+                    </div>
+                  ) : (
+                    <div key={item.id} className='space-y-2'>
                       <h3 className='text-lg font-semibold'>
-                        <CustomLink href='https://www.uinsa.ac.id/'>
-                          {' '}
-                          UIN Sunan Ampel Surabaya
-                        </CustomLink>
+                        {item.companyUrl ? (
+                          <CustomLink href={item.companyUrl}>
+                            {item.title}
+                          </CustomLink>
+                        ) : (
+                          item.title
+                        )}
                       </h3>
-                      <p className='text-sm text-muted'>
-                        Aug 2020 – Jan 2024 · Bachelor of Information System
-                        (GPA 3.59/4.00)
+
+                      <p className='font-medium'>{item.role}</p>
+
+                      <p className='text-sm text-gray-500'>
+                        {`${item.startDate} - ${item.endDate}`}
+                        {item.location ? ` · ${item.location}` : ''}
                       </p>
-                      <ul className='list-disc pl-5 mt-1 text-base'>
-                        <li>
-                          Completed Thesis: Malware Forensic Analysis on
-                          WhatsApp (Android) using D4I Framework
-                        </li>
-                        <li>
-                          Focused on IT Management and Information Systems
-                        </li>
-                        <li>Graduated in 7 semesters with CumLaude honors</li>
-                      </ul>
+
+                      {session?.user?.admin && (
+                        <div className='flex gap-2 pt-2'>
+                          <Button
+                            className='custom-button text-sm'
+                            onClick={() => handleEdit(item)}
+                          >
+                            Edit
+                          </Button>
+
+                          <Button
+                            className='custom-button text-sm'
+                            onClick={() => handleDelete(item.id)}
+                          >
+                            Delete
+                          </Button>
+                        </div>
+                      )}
+
+                      {item.descriptions.length > 0 &&
+                        (item.descriptions.length === 1 ? (
+                          <p className='mt-2 text-base text-muted-foreground'>
+                            {item.descriptions[0]}
+                          </p>
+                        ) : (
+                          <ul className='mt-2 list-disc pl-5'>
+                            {item.descriptions.map((desc) => (
+                              <li key={desc}>{desc}</li>
+                            ))}
+                          </ul>
+                        ))}
                     </div>
-                    <div>
-                      <h3 className='text-lg font-semibold'>
-                        <CustomLink href='https://www.man1blitar.sch.id/'>
-                          {' '}
-                          MAN 1 Blitar
-                        </CustomLink>
-                      </h3>
-                      <p className='text-sm text-muted'>
-                        Aug 2016 – Mar 2019 · Blitar, East Java
-                      </p>
-                      <ul className='list-disc pl-5 mt-1 text-base'>
-                        <li>
-                          Graduated with a focus on Science and Mathematics
-                        </li>
-                        <li>
-                          Completed PRODISTIK – Graphic Design (Collaboration
-                          with ITS Surabaya)
-                        </li>
-                      </ul>
-                    </div>
-                  </motion.div>
-                )}
-              </div>
-            )}
-            {activeTab === 'experience' && (
-              <div>
-                {activeTab === 'experience' && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className='space-y-4'
-                  >
-                    <div>
-                      <h3 className='text-lg font-semibold'>
-                        <CustomLink href='https://www.pelindo.co.id/'>
-                          {' '}
-                          PT Pelabuhan Indonesia (Persero)
-                        </CustomLink>
-                      </h3>
-                      <p className='text-sm text-muted'>
-                        Jul 2024 – Jun 2025 · Surabaya, Indonesia
-                      </p>
-                      <ul className='list-disc pl-5 mt-1 text-base'>
-                        <li>
-                          Contributed to the design and support of internal
-                          audit information systems.
-                        </li>
-                        <li>
-                          Managed audit documentation for ISO 9001, 14001, ISPS
-                          Code, and SMK3 compliance.
-                        </li>
-                        <li>
-                          Performed hardware setup and troubleshooting to
-                          support digital audits.
-                        </li>
-                        <li>
-                          Developed BCM (Business Continuity Management) schemes
-                          for cybersecurity threats.
-                        </li>
-                      </ul>
-                    </div>
-                    <div>
-                      <h3 className='text-lg font-semibold'>
-                        <CustomLink href='https://www.onyxhouseware.com/'>
-                          {' '}
-                          PT Presindo Central
-                        </CustomLink>
-                      </h3>
-                      <p className='text-sm text-muted'>
-                        Feb 2023 – Mar 2023 · Tangerang, Banten
-                      </p>
-                      <ul className='list-disc pl-5 mt-1 text-base'>
-                        <li>
-                          Built archive management system using Laravel +
-                          Bootstrap.
-                        </li>
-                        <li>
-                          Integrated REST APIs and assisted with database and
-                          backup operations.
-                        </li>
-                        <li>
-                          Provided user training and system testing support.
-                        </li>
-                      </ul>
-                    </div>
-                  </motion.div>
-                )}
-              </div>
-            )}
-            {activeTab === 'Project Experience' && (
-              <div>
-                {activeTab === 'Project Experience' && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className='space-y-4'
-                  >
-                    <ul className='list-disc pl-5'>
-                      <li>
-                        Web-based Archive Management System –{' '}
-                        <CustomLink href='https://laravel.com'>
-                          {' '}
-                          (Laravel)
-                        </CustomLink>
-                      </li>
-                      <p>
-                        Developed during internship at PT Presindo Central,
-                        integrating REST APIs and Bootstrap for a user-friendly
-                        interface.
-                      </p>
-                      <li>
-                        Water Quality Change Dashboard Project –{' '}
-                        <CustomLink href='https://app.powerbi.com/'>
-                          {' '}
-                          (PowerBI)
-                        </CustomLink>
-                      </li>
-                      <p>
-                        Created a dashboard to visualize water quality changes
-                        in Banjarmasin, utilizing Power BI for data analysis and
-                        reporting.
-                      </p>
-                      <li>
-                        Car Paint Shop Management System –{' '}
-                        <CustomLink href='https://laravel.com'>
-                          {' '}
-                          (Laravel)
-                        </CustomLink>
-                      </li>
-                      <p>
-                        Developed a management system for a car paint shop,
-                        focusing on inventory and customer management.
-                      </p>
-                    </ul>
-                  </motion.div>
-                )}
-              </div>
-            )}
-            {activeTab === 'training' && (
-              <div>
-                {activeTab === 'training' && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className='space-y-4'
-                  >
-                    <ul className='list-disc pl-5'>
-                      <li>
-                        Understanding Internal Audit Concepts & Techniques ISO
-                        19011 Training –{' '}
-                        <CustomLink href='https://www.globalkopelindo.com/'>
-                          {' '}
-                          Global Kopelindo Synergy{' '}
-                        </CustomLink>
-                        2025
-                      </li>
-                      <li>
-                        ISO 9001 and ISO 22301 Awareness Training –{' '}
-                        <CustomLink href='https://www.globalkopelindo.com/'>
-                          {' '}
-                          Global Kopelindo Synergy{' '}
-                        </CustomLink>
-                        2025
-                      </li>
-                      <li>
-                        ISO 50001 Awareness Training and ISO 50006 Workshop –{' '}
-                        <CustomLink href='https://www.globalkopelindo.com/'>
-                          {' '}
-                          Global Kopelindo Synergy{' '}
-                        </CustomLink>
-                        2024
-                      </li>
-                      <li>
-                        Fundamental Web Programming –{' '}
-                        <CustomLink href='https://www.hacktiv8.com/'>
-                          {' '}
-                          Hactiv8{' '}
-                        </CustomLink>
-                        2024
-                      </li>
-                      <li>
-                        Certified Data Scientist –{' '}
-                        <CustomLink href='https://bnsp.go.id/'>
-                          {' '}
-                          BNSP{' '}
-                        </CustomLink>
-                        2023
-                      </li>
-                      <li>
-                        Associate Data Science –{' '}
-                        <CustomLink href='https://creativemedia.id/'>
-                          {' '}
-                          Creative Media{' '}
-                        </CustomLink>
-                        2023
-                      </li>
-                      <li>
-                        Junior Computer Operator & Scientific Writing –{' '}
-                        <CustomLink href='https://uinsa.ac.id/pustipd'>
-                          {' '}
-                          PUSTIPD UINSA{' '}
-                        </CustomLink>
-                        2023
-                      </li>
-                    </ul>
-                    <div className='mt-4'>
-                      <CustomLink href='https://showcase.mamskie.dev/'>
-                        {' '}
-                        Credential Showcase &gt;&gt;&gt;&gt;&gt;{' '}
-                      </CustomLink>
-                    </div>
-                  </motion.div>
-                )}
-              </div>
-            )}
+                  );
+                })
+              )}
+            </motion.div>
           </div>
         </div>
       </section>
+      <PortfolioModal
+        open={showPortfolioModal}
+        portfolio={selectedPortfolio}
+        selectedType={selectedPortfolio ? undefined : activeType}
+        closeModal={() => {
+          setShowPortfolioModal(false);
+          setSelectedPortfolio(null);
+        }}
+      />
     </main>
   );
 }
@@ -521,3 +530,21 @@ const favoriteTechStack: FavoriteTechStack[] = [
     Icon: SiJavascript
   }
 ];
+import type { GetServerSideProps } from 'next';
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getServerSession<AuthOptions, CustomSession>(
+    context.req,
+    context.res,
+    authOptions
+  );
+
+  const portfolio = await getPortfolio();
+
+  return {
+    props: {
+      portfolio,
+      session
+    }
+  };
+};

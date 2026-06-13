@@ -133,7 +133,7 @@ export const searchData: SearchItem[] = [
     title: 'Resume',
     content:
       'Download my resume to learn more about my professional background.',
-    href: 'https://drive.google.com/file/d/1YBmCQkH2yQM0tcQM3-NQwKhg6XtkMnNd/view?usp=sharing'
+    href: 'https://drive.google.com/file/d/1y2k9eu6KXk1czk1hhidquE8_vL6n6RV_/view?usp=sharing'
   },
   {
     title: 'Guestbook',

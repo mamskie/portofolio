@@ -16,7 +16,7 @@ export default function Home({
   featuredProjects
 }: InferGetStaticPropsType<typeof getStaticProps>): JSX.Element {
   return (
-    <main className='grid gap-20'>
+    <main className='relative z-10 grid gap-20'>
       <SEO
         title='Mamskie'
         description='An online portfolio and blog by M. Khotibul Umam. Showcase some of my past projects and some of my thoughts on the world of web development.'
@@ -47,12 +47,13 @@ export default function Home({
              md:mt-6 md:text-lg 2xl:text-xl'
           {...setTransition({ delayIn: 0.3 })}
         >
-          I&apos;m a self-taught developer, who&apos;s experienced in the field
-          of Information Systems with expertise in IT management, risk
-          management, web development, and system integration. Highly motivated
-          to learn, solution-oriented thinker, and able to adapt quickly in
-          various situations. Ready to contribute effectively and grow together
-          with the team.
+          An Information Systems graduate with hands-on experience in IT
+          Operations, Monitoring & Reporting, Governance, Risk & Compliance
+          (GRC), Internal Audit, and Web Development. Experienced in
+          infrastructure monitoring, incident management, dashboard reporting,
+          data analysis, and business process improvement. Passionate about
+          technology, continuous learning, and solving complex problems through
+          data-driven and practical solutions.
         </motion.p>
         <motion.section
           className='mt-8 flex gap-4 text-sm md:text-base'
@@ -137,7 +138,7 @@ type SocialLink = {
 const socialLink: SocialLink[] = [
   {
     name: 'Resume',
-    href: 'https://drive.google.com/file/d/19-IClRZnnwRl9jRfuaRmS5Ebpqp1Xj_U/view?usp=sharing',
+    href: 'https://drive.google.com/file/d/1y2k9eu6KXk1czk1hhidquE8_vL6n6RV_/view?usp=sharing',
     Icon: HiDocumentText
   },
   {

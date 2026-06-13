@@ -1,6 +1,7 @@
 import { collection } from 'firebase/firestore';
 import { contentMetaConverter } from '@lib/types/meta';
 import { guestbookConverter } from '@lib/types/guestbook';
+import { portfolioConverter } from '@lib/types/portfolio';
 import { db } from './app';
 
 export const contentsCollection = collection(db, 'contents').withConverter(
@@ -9,4 +10,8 @@ export const contentsCollection = collection(db, 'contents').withConverter(
 
 export const guestbookCollection = collection(db, 'guestbook').withConverter(
   guestbookConverter
+);
+
+export const portfolioCollection = collection(db, 'portfolio').withConverter(
+  portfolioConverter
 );
