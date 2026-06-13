@@ -83,24 +83,6 @@ export async function getGuestbook(): Promise<Guestbook[]> {
 export type BlogWithViews = Blog & Pick<ContentMeta, 'views'>;
 
 /**
- * Returns all the blog posts with the views.
- */
-export async function getAllBlogWithViews(): Promise<BlogWithViews[]> {
-  const posts = await getAllContents('blog');
-
-  const postsPromises = posts.map(async (post) => {
-    const snapshot = await getDoc(doc(contentsCollection, post.slug));
-    const { views } = snapshot.data() as ContentMeta;
-
-    return { ...post, views };
-  });
-
-  const postsWithViews = await Promise.all(postsPromises);
-
-  return postsWithViews;
-}
-
-/**
  * Send email to my email address.
  */
 export async function sendEmail(
